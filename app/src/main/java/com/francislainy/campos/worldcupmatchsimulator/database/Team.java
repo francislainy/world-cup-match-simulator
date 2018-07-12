@@ -12,8 +12,8 @@ import android.support.annotation.NonNull;
 public class Team {
 
     @NonNull
-    @PrimaryKey
-    private String teamId;
+    @PrimaryKey(autoGenerate = true)
+    private int teamId;
 
     private String teamName;
 
@@ -23,11 +23,11 @@ public class Team {
 
     }
 
-    public String getTeamId() {
+    public int getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(String teamId) {
+    public void setTeamId(int teamId) {
         this.teamId = teamId;
     }
 
