@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Team> teams = new ArrayList<>();
 
                 ArrayList<String> listGroupA = new ArrayList<>();
-                listGroupA.add("Russia");
+                listGroupA.add("Russia"); //todo: have team names in English
                 listGroupA.add("Arabia Saudita");
                 listGroupA.add("Egito");
                 listGroupA.add("Uruguai");
@@ -158,8 +158,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }).start();
-
-
 
 
         ViewPager pager = findViewById(R.id.viewPager);

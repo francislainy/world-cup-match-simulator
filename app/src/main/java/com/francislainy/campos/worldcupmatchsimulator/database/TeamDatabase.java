@@ -7,7 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
  * Created by Francislainy on 04/07/2018.
  */
 
-@Database(entities = {Team.class}, version = 1, exportSchema = false)
+@Database(entities = {Team.class}, version = 2, exportSchema = false)
 public abstract class TeamDatabase extends RoomDatabase{
 
     public abstract DaoAccess daoAccess();

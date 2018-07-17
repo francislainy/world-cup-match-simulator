@@ -23,4 +23,7 @@ public interface DaoAccess {
     @Query("SELECT * FROM Team WHERE teamId = :teamId")
     Team selectTeamById(int teamId);
 
+    @Query("UPDATE Team SET teamPosition = :teamPosition WHERE teamId = :teamId")
+    int updateTeam(int teamId, int teamPosition);
+
 }

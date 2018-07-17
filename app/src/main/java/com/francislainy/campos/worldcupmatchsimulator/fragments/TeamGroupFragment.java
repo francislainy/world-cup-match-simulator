@@ -1,6 +1,7 @@
 package com.francislainy.campos.worldcupmatchsimulator.fragments;
 
 
+import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.francislainy.campos.worldcupmatchsimulator.R;
+import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +29,9 @@ public class TeamGroupFragment extends Fragment {
     Button btn4;
     @BindView(R.id.tv_group_name)
     TextView tvGroupName;
+
+    private static final String DATABASE_NAME = "teams_db";
+    private TeamDatabase teamDatabase;
 
 
     public TeamGroupFragment() {
@@ -61,6 +66,10 @@ public class TeamGroupFragment extends Fragment {
 
                 String group = bundle.getString("group");
 
+                teamDatabase = Room.databaseBuilder(getContext(), TeamDatabase.class, DATABASE_NAME)
+                        .fallbackToDestructiveMigration()
+                        .build();
+
                 switch (group) {
 
                     case "a":
@@ -70,6 +79,17 @@ public class TeamGroupFragment extends Fragment {
                         btn4.setText("Uruguai");
 
                         tvGroupName.setText("Group A");
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                               teamDatabase.daoAccess().updateTeam(1, 2);
+                               teamDatabase.daoAccess().updateTeam(2, 1);
+                               teamDatabase.daoAccess().updateTeam(3, 3);
+                               teamDatabase.daoAccess().updateTeam(4, 4);
+
+                            }}).start();
 
                         break;
 

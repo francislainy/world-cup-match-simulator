@@ -19,6 +19,8 @@ public class Team {
 
     private String teamGroup;
 
+    public int teamPosition;
+
     public Team() {
 
     }
@@ -47,4 +49,11 @@ public class Team {
         this.teamGroup = teamGroup;
     }
 
+    public int getTeamPosition() {
+        return teamPosition;
+    }
+
+    public void setTeamPosition(int teamPosition) {
+        this.teamPosition = teamPosition;
+    }
 }
