@@ -101,6 +101,18 @@ public class TeamGroupFragment extends Fragment {
 
                         tvGroupName.setText("Group B");
 
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                teamDatabase.daoAccess().updateTeam(5, 2);
+                                teamDatabase.daoAccess().updateTeam(6, 1);
+                                teamDatabase.daoAccess().updateTeam(7, 3);
+                                teamDatabase.daoAccess().updateTeam(8, 4);
+
+                            }}).start();
+
+
                         break;
 
                     case "c":
@@ -110,6 +122,18 @@ public class TeamGroupFragment extends Fragment {
                         btn4.setText("Dinamarca");
 
                         tvGroupName.setText("Group C");
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                teamDatabase.daoAccess().updateTeam(9, 2);
+                                teamDatabase.daoAccess().updateTeam(10, 1);
+                                teamDatabase.daoAccess().updateTeam(11, 3);
+                                teamDatabase.daoAccess().updateTeam(12, 4);
+
+                            }}).start();
+
 
                         break;
 
@@ -121,6 +145,17 @@ public class TeamGroupFragment extends Fragment {
 
                         tvGroupName.setText("Group D");
 
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                teamDatabase.daoAccess().updateTeam(13, 2);
+                                teamDatabase.daoAccess().updateTeam(14, 1);
+                                teamDatabase.daoAccess().updateTeam(15, 3);
+                                teamDatabase.daoAccess().updateTeam(16, 4);
+
+                            }}).start();
+
                         break;
 
                     case "e":
@@ -130,6 +165,17 @@ public class TeamGroupFragment extends Fragment {
                         btn4.setText("Servia");
 
                         tvGroupName.setText("Group E");
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                teamDatabase.daoAccess().updateTeam(17, 2);
+                                teamDatabase.daoAccess().updateTeam(18, 1);
+                                teamDatabase.daoAccess().updateTeam(19, 3);
+                                teamDatabase.daoAccess().updateTeam(20, 4);
+
+                            }}).start();
 
                         break;
 
@@ -141,6 +187,17 @@ public class TeamGroupFragment extends Fragment {
 
                         tvGroupName.setText("Group F");
 
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                teamDatabase.daoAccess().updateTeam(21, 2);
+                                teamDatabase.daoAccess().updateTeam(22, 1);
+                                teamDatabase.daoAccess().updateTeam(23, 3);
+                                teamDatabase.daoAccess().updateTeam(24, 4);
+
+                            }}).start();
+
                         break;
 
                     case "g":
@@ -151,6 +208,17 @@ public class TeamGroupFragment extends Fragment {
 
                         tvGroupName.setText("Group G");
 
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                teamDatabase.daoAccess().updateTeam(25, 2);
+                                teamDatabase.daoAccess().updateTeam(26, 1);
+                                teamDatabase.daoAccess().updateTeam(27, 3);
+                                teamDatabase.daoAccess().updateTeam(28, 4);
+
+                            }}).start();
+
                         break;
 
                     case "h":
@@ -160,6 +228,17 @@ public class TeamGroupFragment extends Fragment {
                         btn4.setText("Japao");
 
                         tvGroupName.setText("Group H");
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                teamDatabase.daoAccess().updateTeam(29, 2);
+                                teamDatabase.daoAccess().updateTeam(30, 1);
+                                teamDatabase.daoAccess().updateTeam(31, 3);
+                                teamDatabase.daoAccess().updateTeam(32, 4);
+
+                            }}).start();
 
                         break;
 

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.francislainy.campos.worldcupmatchsimulator.R;
 import com.francislainy.campos.worldcupmatchsimulator.database.Team;
 import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
+import com.francislainy.campos.worldcupmatchsimulator.fragments.OitavasDeFinalFragment;
 import com.francislainy.campos.worldcupmatchsimulator.fragments.TeamGroupFragment;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static int NUMBER_OF_PAGES = 8;
+    public final static int NUMBER_OF_PAGES = 9;
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
 
@@ -192,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
                     return TeamGroupFragment.newInstance("g");
                 case 7:
                     return TeamGroupFragment.newInstance("h");
+                case 8:
+                    return new OitavasDeFinalFragment();
                 default:
                     return TeamGroupFragment.newInstance("a");
             }
