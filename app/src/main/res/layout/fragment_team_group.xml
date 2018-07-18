@@ -1,9 +1,10 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.francislainy.campos.worldcupmatchsimulator.fragments.TeamGroupFragment">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.francislainy.campos.worldcupmatchsimulator.fragments.TeamGroupFragment">
 
     <Button
         android:id="@+id/btn1"
@@ -53,13 +54,56 @@
         android:id="@+id/tv_group_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Group A"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/ll_2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ll_3"
+        app:layout_constraintTop_toTopOf="@+id/ll_2"/>
+
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="176dp"
+        android:background="#00FF00"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/ll_4"
+        app:layout_constraintTop_toBottomOf="@+id/tv_group_name"/>
+
+    <LinearLayout
+        android:id="@+id/ll_3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:background="#FF0000"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_1"/>
+
+    <LinearLayout
+        android:id="@+id/ll_4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="16dp"
+        android:background="#FFFF00"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ll_3"/>
+
 </android.support.constraint.ConstraintLayout>

@@ -2,12 +2,16 @@ package com.francislainy.campos.worldcupmatchsimulator.fragments;
 
 
 import android.arch.persistence.room.Room;
+import android.content.ClipData;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.francislainy.campos.worldcupmatchsimulator.R;
@@ -27,6 +31,14 @@ public class TeamGroupFragment extends Fragment {
     Button btn3;
     @BindView(R.id.btn4)
     Button btn4;
+    @BindView(R.id.ll_1)
+    LinearLayout ll_1;
+    @BindView(R.id.ll_2)
+    LinearLayout ll_2;
+    @BindView(R.id.ll_3)
+    LinearLayout ll_3;
+    @BindView(R.id.ll_4)
+    LinearLayout ll_4;
     @BindView(R.id.tv_group_name)
     TextView tvGroupName;
 
@@ -70,6 +82,7 @@ public class TeamGroupFragment extends Fragment {
                         .fallbackToDestructiveMigration()
                         .build();
 
+
                 switch (group) {
 
                     case "a":
@@ -84,12 +97,13 @@ public class TeamGroupFragment extends Fragment {
                             @Override
                             public void run() {
 
-                               teamDatabase.daoAccess().updateTeam(1, 2);
-                               teamDatabase.daoAccess().updateTeam(2, 1);
-                               teamDatabase.daoAccess().updateTeam(3, 3);
-                               teamDatabase.daoAccess().updateTeam(4, 4);
+                                teamDatabase.daoAccess().updateTeam(1, 2);
+                                teamDatabase.daoAccess().updateTeam(2, 1);
+                                teamDatabase.daoAccess().updateTeam(3, 3);
+                                teamDatabase.daoAccess().updateTeam(4, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
                         break;
 
@@ -110,7 +124,8 @@ public class TeamGroupFragment extends Fragment {
                                 teamDatabase.daoAccess().updateTeam(7, 3);
                                 teamDatabase.daoAccess().updateTeam(8, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
 
                         break;
@@ -132,7 +147,8 @@ public class TeamGroupFragment extends Fragment {
                                 teamDatabase.daoAccess().updateTeam(11, 3);
                                 teamDatabase.daoAccess().updateTeam(12, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
 
                         break;
@@ -154,7 +170,8 @@ public class TeamGroupFragment extends Fragment {
                                 teamDatabase.daoAccess().updateTeam(15, 3);
                                 teamDatabase.daoAccess().updateTeam(16, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
                         break;
 
@@ -175,7 +192,8 @@ public class TeamGroupFragment extends Fragment {
                                 teamDatabase.daoAccess().updateTeam(19, 3);
                                 teamDatabase.daoAccess().updateTeam(20, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
                         break;
 
@@ -196,7 +214,8 @@ public class TeamGroupFragment extends Fragment {
                                 teamDatabase.daoAccess().updateTeam(23, 3);
                                 teamDatabase.daoAccess().updateTeam(24, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
                         break;
 
@@ -217,7 +236,8 @@ public class TeamGroupFragment extends Fragment {
                                 teamDatabase.daoAccess().updateTeam(27, 3);
                                 teamDatabase.daoAccess().updateTeam(28, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
                         break;
 
@@ -238,7 +258,8 @@ public class TeamGroupFragment extends Fragment {
                                 teamDatabase.daoAccess().updateTeam(31, 3);
                                 teamDatabase.daoAccess().updateTeam(32, 4);
 
-                            }}).start();
+                            }
+                        }).start();
 
                         break;
 
@@ -249,7 +270,85 @@ public class TeamGroupFragment extends Fragment {
         }
 
 
+        btn1.setOnTouchListener(new MyTouchListener());
+        btn2.setOnTouchListener(new MyTouchListener());
+        btn3.setOnTouchListener(new MyTouchListener());
+        btn4.setOnTouchListener(new MyTouchListener());
+        ll_1.setOnDragListener(new MyDragListener());
+        ll_2.setOnDragListener(new MyDragListener());
+        ll_3.setOnDragListener(new MyDragListener());
+        ll_4.setOnDragListener(new MyDragListener());
+
         return view;
     }
 
+
+    private final class MyTouchListener implements View.OnTouchListener {
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                view.setVisibility(View.VISIBLE);
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+
+        }
+    }
+
+
+    private class MyDragListener implements View.OnDragListener {
+
+        @Override
+        public boolean onDrag(View view, DragEvent dragEvent) {
+
+            int action = dragEvent.getAction();
+
+            switch (action) {
+
+                case DragEvent.ACTION_DROP:
+
+                    View view1 = (View) dragEvent.getLocalState();
+                    ViewGroup owner = (ViewGroup) view1.getParent();
+                    owner.removeView(view1);
+                    LinearLayout container = (LinearLayout) view;
+                    container.addView(view1);
+                    view1.setVisibility(View.VISIBLE);
+            }
+
+            return true;
+        }
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

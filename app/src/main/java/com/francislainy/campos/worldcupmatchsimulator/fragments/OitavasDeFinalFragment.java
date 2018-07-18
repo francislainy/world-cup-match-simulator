@@ -115,6 +115,8 @@ public class OitavasDeFinalFragment extends Fragment {
                         tvSecondGroupE.setText(secondGroupE.getTeamName());
                         tvFirstGroupH.setText(firstGroupH.getTeamName());
                         tvSecondGroupG.setText(secondGroupG.getTeamName());
+
+                        //todo: create a table with match number and match winner (plus match label)
                     }
                 });
 
