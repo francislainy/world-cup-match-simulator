@@ -4,6 +4,7 @@ package com.francislainy.campos.worldcupmatchsimulator.fragments;
 import android.arch.persistence.room.Room;
 import android.content.ClipData;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.view.DragEvent.ACTION_DROP;
 
 
 public class TeamGroupFragment extends Fragment {
@@ -39,8 +42,11 @@ public class TeamGroupFragment extends Fragment {
     LinearLayout ll_3;
     @BindView(R.id.ll_4)
     LinearLayout ll_4;
+    @BindView(R.id.cl)
+    ConstraintLayout cl;
     @BindView(R.id.tv_group_name)
     TextView tvGroupName;
+
 
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
@@ -278,6 +284,8 @@ public class TeamGroupFragment extends Fragment {
         ll_2.setOnDragListener(new MyDragListener());
         ll_3.setOnDragListener(new MyDragListener());
         ll_4.setOnDragListener(new MyDragListener());
+        // cl.setOnDragListener(new MyDragListener());
+
 
         return view;
     }
@@ -288,6 +296,22 @@ public class TeamGroupFragment extends Fragment {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
 
+            if (ll_1.getChildCount() == 0) {
+                ll_1.setOnDragListener(new MyDragListener());
+            }
+
+            if (ll_2.getChildCount() == 0) {
+                ll_2.setOnDragListener(new MyDragListener());
+            }
+
+            if (ll_3.getChildCount() == 0) {
+                ll_3.setOnDragListener(new MyDragListener());
+            }
+
+            if (ll_4.getChildCount() == 0) {
+                ll_4.setOnDragListener(new MyDragListener());
+            }
+
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
 
                 ClipData data = ClipData.newPlainText("", "");
@@ -296,13 +320,9 @@ public class TeamGroupFragment extends Fragment {
                 view.setVisibility(View.VISIBLE);
 
                 return true;
-
-            } else {
-
-                return false;
             }
 
-
+            return false;
         }
     }
 
@@ -314,41 +334,53 @@ public class TeamGroupFragment extends Fragment {
 
             int action = dragEvent.getAction();
 
+
             switch (action) {
 
-                case DragEvent.ACTION_DROP:
+                case ACTION_DROP:
 
                     View view1 = (View) dragEvent.getLocalState();
                     ViewGroup owner = (ViewGroup) view1.getParent();
+
                     owner.removeView(view1);
                     LinearLayout container = (LinearLayout) view;
-                    container.addView(view1);
                     view1.setVisibility(View.VISIBLE);
+
+                    if (container.getChildCount() == 0) {
+                        container.addView(view1); // Only view not already filled can have a child added to it
+
+                        if (view.getId() == R.id.ll_1) {
+                            ll_1.setOnDragListener(null);
+                        } else if (view.getId() == R.id.ll_2) {
+                            ll_2.setOnDragListener(null);
+                        } else if (view.getId() == R.id.ll_3) {
+                            ll_3.setOnDragListener(null);
+                        } else if (view.getId() == R.id.ll_4) {
+                            ll_4.setOnDragListener(null);
+                        }
+
+                    } else {
+
+                        if (view.getId() == R.id.ll_1) {
+                            ll_1.setOnDragListener(new MyDragListener());
+                        } else if (view.getId() == R.id.ll_2) {
+                            ll_2.setOnDragListener(new MyDragListener());
+                        } else if (view.getId() == R.id.ll_3) {
+                            ll_3.setOnDragListener(new MyDragListener());
+                        } else if (view.getId() == R.id.ll_2) {
+                            ll_4.setOnDragListener(new MyDragListener());
+                        }
+
+                        // Cancel drag if can't put button inside view already occupied
+                        return false;
+                    }
+
+                    break;
+
             }
 
             return true;
         }
     }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
