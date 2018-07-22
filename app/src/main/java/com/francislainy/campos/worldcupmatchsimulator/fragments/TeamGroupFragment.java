@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.francislainy.campos.worldcupmatchsimulator.R;
 import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -47,10 +49,14 @@ public class TeamGroupFragment extends Fragment {
     @BindView(R.id.tv_group_name)
     TextView tvGroupName;
 
+    int teamId1 = 0;
+    int teamId2 = 0;
+    int teamId3 = 0;
+    int teamId4 = 0;
 
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
-
+    ArrayList<LinearLayout> layouts = new ArrayList<>();
 
     public TeamGroupFragment() {
         // Required empty public constructor
@@ -88,188 +94,7 @@ public class TeamGroupFragment extends Fragment {
                         .fallbackToDestructiveMigration()
                         .build();
 
-
-                switch (group) {
-
-                    case "a":
-                        btn1.setText("Russia");
-                        btn2.setText("Arabia Saudita");
-                        btn3.setText("Egito");
-                        btn4.setText("Uruguai");
-
-                        tvGroupName.setText("Group A");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(1, 2);
-                                teamDatabase.daoAccess().updateTeam(2, 1);
-                                teamDatabase.daoAccess().updateTeam(3, 3);
-                                teamDatabase.daoAccess().updateTeam(4, 4);
-
-                            }
-                        }).start();
-
-                        break;
-
-                    case "b":
-                        btn1.setText("Portugal");
-                        btn2.setText("Espanha");
-                        btn3.setText("Marrocos");
-                        btn4.setText("Ira");
-
-                        tvGroupName.setText("Group B");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(5, 2);
-                                teamDatabase.daoAccess().updateTeam(6, 1);
-                                teamDatabase.daoAccess().updateTeam(7, 3);
-                                teamDatabase.daoAccess().updateTeam(8, 4);
-
-                            }
-                        }).start();
-
-
-                        break;
-
-                    case "c":
-                        btn1.setText("Franca");
-                        btn2.setText("Australia");
-                        btn3.setText("Peru");
-                        btn4.setText("Dinamarca");
-
-                        tvGroupName.setText("Group C");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(9, 2);
-                                teamDatabase.daoAccess().updateTeam(10, 1);
-                                teamDatabase.daoAccess().updateTeam(11, 3);
-                                teamDatabase.daoAccess().updateTeam(12, 4);
-
-                            }
-                        }).start();
-
-
-                        break;
-
-                    case "d":
-                        btn1.setText("Islandia");
-                        btn2.setText("Argentina");
-                        btn3.setText("Croacia");
-                        btn4.setText("Nigeria");
-
-                        tvGroupName.setText("Group D");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(13, 2);
-                                teamDatabase.daoAccess().updateTeam(14, 1);
-                                teamDatabase.daoAccess().updateTeam(15, 3);
-                                teamDatabase.daoAccess().updateTeam(16, 4);
-
-                            }
-                        }).start();
-
-                        break;
-
-                    case "e":
-                        btn1.setText("Brasil");
-                        btn2.setText("Suica");
-                        btn3.setText("Costa Rica");
-                        btn4.setText("Servia");
-
-                        tvGroupName.setText("Group E");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(17, 2);
-                                teamDatabase.daoAccess().updateTeam(18, 1);
-                                teamDatabase.daoAccess().updateTeam(19, 3);
-                                teamDatabase.daoAccess().updateTeam(20, 4);
-
-                            }
-                        }).start();
-
-                        break;
-
-                    case "f":
-                        btn1.setText("Alemanha");
-                        btn2.setText("Mexico");
-                        btn3.setText("Suecia");
-                        btn4.setText("Coreia do Sul");
-
-                        tvGroupName.setText("Group F");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(21, 2);
-                                teamDatabase.daoAccess().updateTeam(22, 1);
-                                teamDatabase.daoAccess().updateTeam(23, 3);
-                                teamDatabase.daoAccess().updateTeam(24, 4);
-
-                            }
-                        }).start();
-
-                        break;
-
-                    case "g":
-                        btn1.setText("Belgica");
-                        btn2.setText("Panama");
-                        btn3.setText("Tunisia");
-                        btn4.setText("Inglaterra");
-
-                        tvGroupName.setText("Group G");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(25, 2);
-                                teamDatabase.daoAccess().updateTeam(26, 1);
-                                teamDatabase.daoAccess().updateTeam(27, 3);
-                                teamDatabase.daoAccess().updateTeam(28, 4);
-
-                            }
-                        }).start();
-
-                        break;
-
-                    case "h":
-                        btn1.setText("Polonia");
-                        btn2.setText("Senegal");
-                        btn3.setText("Colombia");
-                        btn4.setText("Japao");
-
-                        tvGroupName.setText("Group H");
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                teamDatabase.daoAccess().updateTeam(29, 2);
-                                teamDatabase.daoAccess().updateTeam(30, 1);
-                                teamDatabase.daoAccess().updateTeam(31, 3);
-                                teamDatabase.daoAccess().updateTeam(32, 4);
-
-                            }
-                        }).start();
-
-                        break;
-
-                }
+                setGroupDetails(group);
 
             }
 
@@ -280,14 +105,115 @@ public class TeamGroupFragment extends Fragment {
         btn2.setOnTouchListener(new MyTouchListener());
         btn3.setOnTouchListener(new MyTouchListener());
         btn4.setOnTouchListener(new MyTouchListener());
-        ll_1.setOnDragListener(new MyDragListener());
-        ll_2.setOnDragListener(new MyDragListener());
-        ll_3.setOnDragListener(new MyDragListener());
-        ll_4.setOnDragListener(new MyDragListener());
         // cl.setOnDragListener(new MyDragListener());
 
+        layouts.add(ll_1);
+        layouts.add(ll_2);
+        layouts.add(ll_3);
+        layouts.add(ll_4);
+
+        for (LinearLayout layout : layouts) {
+            layout.setOnDragListener(new MyDragListener());
+        }
 
         return view;
+    }
+
+
+    private void setGroupDetails(String groupName) {
+
+        switch (groupName) {
+
+            case "a":
+
+                btn1.setText("Russia");
+                btn2.setText("Arabia Saudita");
+                btn3.setText("Egito");
+                btn4.setText("Uruguai");
+
+                tvGroupName.setText("Group A");
+
+                break;
+
+            case "b":
+
+                btn1.setText("Portugal");
+                btn2.setText("Espanha");
+                btn3.setText("Marrocos");
+                btn4.setText("Ira");
+
+                tvGroupName.setText("Group B");
+
+                break;
+
+            case "c":
+
+                btn1.setText("Franca");
+                btn2.setText("Australia");
+                btn3.setText("Peru");
+                btn4.setText("Dinamarca");
+
+                tvGroupName.setText("Group C");
+
+                break;
+
+            case "d":
+
+                btn1.setText("Islandia");
+                btn2.setText("Argentina");
+                btn3.setText("Croacia");
+                btn4.setText("Nigeria");
+
+                tvGroupName.setText("Group D");
+
+                break;
+
+            case "e":
+
+                btn1.setText("Brasil");
+                btn2.setText("Suica");
+                btn3.setText("Costa Rica");
+                btn4.setText("Servia");
+
+                tvGroupName.setText("Group E");
+
+                break;
+
+
+            case "f":
+
+                btn1.setText("Alemanha");
+                btn2.setText("Mexico");
+                btn3.setText("Suecia");
+                btn4.setText("Coreia do Sul");
+
+                tvGroupName.setText("Group F");
+
+
+                break;
+
+            case "g":
+
+                btn1.setText("Belgica");
+                btn2.setText("Panama");
+                btn3.setText("Tunisia");
+                btn4.setText("Inglaterra");
+
+                tvGroupName.setText("Group G");
+
+                break;
+
+            case "h":
+
+                btn1.setText("Polonia");
+                btn2.setText("Senegal");
+                btn3.setText("Colombia");
+                btn4.setText("Japao");
+
+                tvGroupName.setText("Group H");
+
+                break;
+        }
     }
 
 
@@ -296,21 +222,14 @@ public class TeamGroupFragment extends Fragment {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
 
-            if (ll_1.getChildCount() == 0) {
-                ll_1.setOnDragListener(new MyDragListener());
+            for (LinearLayout layout : layouts) {
+
+                if (layout.getChildCount() == 0) {
+
+                    layout.setOnDragListener(new MyDragListener());
+                }
             }
 
-            if (ll_2.getChildCount() == 0) {
-                ll_2.setOnDragListener(new MyDragListener());
-            }
-
-            if (ll_3.getChildCount() == 0) {
-                ll_3.setOnDragListener(new MyDragListener());
-            }
-
-            if (ll_4.getChildCount() == 0) {
-                ll_4.setOnDragListener(new MyDragListener());
-            }
 
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
 
@@ -321,6 +240,7 @@ public class TeamGroupFragment extends Fragment {
 
                 return true;
             }
+
 
             return false;
         }
@@ -333,7 +253,8 @@ public class TeamGroupFragment extends Fragment {
         public boolean onDrag(View view, DragEvent dragEvent) {
 
             int action = dragEvent.getAction();
-
+            int id = view.getId();
+            LinearLayout layout = getActivity().findViewById(id);
 
             switch (action) {
 
@@ -349,27 +270,58 @@ public class TeamGroupFragment extends Fragment {
                     if (container.getChildCount() == 0) {
                         container.addView(view1); // Only view not already filled can have a child added to it
 
-                        if (view.getId() == R.id.ll_1) {
-                            ll_1.setOnDragListener(null);
-                        } else if (view.getId() == R.id.ll_2) {
-                            ll_2.setOnDragListener(null);
-                        } else if (view.getId() == R.id.ll_3) {
-                            ll_3.setOnDragListener(null);
-                        } else if (view.getId() == R.id.ll_4) {
-                            ll_4.setOnDragListener(null);
-                        }
+                        layout.setOnDragListener(null);
+
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                setPositionWithinGroup(ll_1, 1);
+                                setPositionWithinGroup(ll_2, 2);
+                                setPositionWithinGroup(ll_3, 3);
+                                setPositionWithinGroup(ll_4, 4);
+
+                                if (tvGroupName.getText().toString().toLowerCase().contains("a")) {
+
+                                    updateDatabaseStartinFromTeamId(1);
+
+                                } else if (tvGroupName.getText().toString().toLowerCase().contains("b")) {
+
+                                    updateDatabaseStartinFromTeamId(5);
+
+                                } else if (tvGroupName.getText().toString().toLowerCase().contains("c")) {
+
+                                    updateDatabaseStartinFromTeamId(9);
+
+                                } else if (tvGroupName.getText().toString().toLowerCase().contains("d")) {
+
+                                    updateDatabaseStartinFromTeamId(13);
+
+                                } else if (tvGroupName.getText().toString().toLowerCase().contains("e")) {
+
+                                    updateDatabaseStartinFromTeamId(17);
+
+                                } else if (tvGroupName.getText().toString().toLowerCase().contains("f")) {
+
+                                    updateDatabaseStartinFromTeamId(21);
+
+                                } else if (tvGroupName.getText().toString().toLowerCase().contains("g")) {
+
+                                    updateDatabaseStartinFromTeamId(25);
+
+                                } else if (tvGroupName.getText().toString().toLowerCase().contains("h")) {
+
+                                    updateDatabaseStartinFromTeamId(29);
+                                }
+
+                            }
+                        }).start();
+
 
                     } else {
 
-                        if (view.getId() == R.id.ll_1) {
-                            ll_1.setOnDragListener(new MyDragListener());
-                        } else if (view.getId() == R.id.ll_2) {
-                            ll_2.setOnDragListener(new MyDragListener());
-                        } else if (view.getId() == R.id.ll_3) {
-                            ll_3.setOnDragListener(new MyDragListener());
-                        } else if (view.getId() == R.id.ll_2) {
-                            ll_4.setOnDragListener(new MyDragListener());
-                        }
+                        layout.setOnDragListener(new MyDragListener());
 
                         // Cancel drag if can't put button inside view already occupied
                         return false;
@@ -380,6 +332,40 @@ public class TeamGroupFragment extends Fragment {
             }
 
             return true;
+        }
+    }
+
+
+    private void updateDatabaseStartinFromTeamId(int id) {
+
+        teamDatabase.daoAccess().updateTeam(id, teamId1);
+        teamDatabase.daoAccess().updateTeam(id + 1, teamId2);
+        teamDatabase.daoAccess().updateTeam(id + 2, teamId3);
+        teamDatabase.daoAccess().updateTeam(id + 3, teamId4);
+
+    }
+
+    private void setPositionWithinGroup(LinearLayout layout, int position) {
+        if (layout.getChildAt(0) != null) {
+
+            int teamViewIdLayout = layout.getChildAt(0).getId();
+
+            switch (teamViewIdLayout) {
+
+                case R.id.btn1:
+                    teamId1 = position;
+                    break;
+                case R.id.btn2:
+                    teamId2 = position;
+                    break;
+                case R.id.btn3:
+                    teamId3 = position;
+                    break;
+                case R.id.btn4:
+                    teamId4 = position;
+                    break;
+            }
+
         }
     }
 
