@@ -272,7 +272,6 @@ public class TeamGroupFragment extends Fragment {
 
                         layout.setOnDragListener(null);
 
-
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -321,7 +320,9 @@ public class TeamGroupFragment extends Fragment {
 
                     } else {
 
-                        layout.setOnDragListener(new MyDragListener());
+                        if (layout.getChildCount() == 0) {
+                            layout.setOnDragListener(new MyDragListener());
+                        }
 
                         // Cancel drag if can't put button inside view already occupied
                         return false;
