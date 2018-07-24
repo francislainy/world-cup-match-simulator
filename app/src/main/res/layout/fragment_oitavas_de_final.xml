@@ -24,6 +24,25 @@
             android:layout_margin="16dp"
             android:text="Team 1"/>
 
+        <RadioGroup
+            android:id="@+id/rd_match1"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match1_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match1_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
         <TextView
             android:id="@+id/tv_second_group_b"
             android:layout_width="wrap_content"
@@ -50,6 +69,24 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Team 1"/>
+
+        <RadioGroup
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match2_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match2_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
 
         <TextView
             android:id="@+id/tv_second_group_d"
@@ -78,6 +115,24 @@
             android:layout_margin="16dp"
             android:text="Team 1"/>
 
+        <RadioGroup
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match3_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match3_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
         <TextView
             android:id="@+id/tv_second_group_f"
             android:layout_width="wrap_content"
@@ -104,6 +159,24 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Team 1"/>
+
+        <RadioGroup
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match4_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match4_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
 
         <TextView
             android:id="@+id/tv_second_group_h"
@@ -132,6 +205,24 @@
             android:layout_margin="16dp"
             android:text="Team 1"/>
 
+        <RadioGroup
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match5_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match5_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
         <TextView
             android:id="@+id/tv_second_group_a"
             android:layout_width="wrap_content"
@@ -158,6 +249,24 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Team 1"/>
+
+        <RadioGroup
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match6_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match6_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
 
         <TextView
             android:id="@+id/tv_second_group_c"
@@ -186,6 +295,24 @@
             android:layout_margin="16dp"
             android:text="Team 1"/>
 
+        <RadioGroup
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match7_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match7_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
         <TextView
             android:id="@+id/tv_second_group_e"
             android:layout_width="wrap_content"
@@ -213,6 +340,24 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Team 1"/>
+
+        <RadioGroup
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rd_match8_team1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rd_match8_team2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
 
         <TextView
             android:id="@+id/tv_second_group_g"

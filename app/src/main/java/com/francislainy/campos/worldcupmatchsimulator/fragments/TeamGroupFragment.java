@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 
 import static android.view.DragEvent.ACTION_DROP;
 
+//https://arte.folha.uol.com.br/esporte/copa-2018/simulador-de-resultados/
 
 public class TeamGroupFragment extends Fragment {
 
