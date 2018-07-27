@@ -170,22 +170,38 @@ public class OitavasDeFinalFragment extends Fragment {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        tvFirstGroupA.setText(firstGroupA[0].getTeamName());
-                        tvSecondGroupB.setText(secondGroupB[0].getTeamName());
-                        tvFirstGroupC.setText(firstGroupC[0].getTeamName());
-                        tvSecondGroupD.setText(secondGroupD[0].getTeamName());
-                        tvFirstGroupE.setText(firstGroupE[0].getTeamName());
-                        tvSecondGroupF.setText(secondGroupF[0].getTeamName());
-                        tvFirstGroupG.setText(firstGroupG[0].getTeamName());
-                        tvSecondGroupH.setText(secondGroupH[0].getTeamName());
-                        tvFirstGroupB.setText(firstGroupB[0].getTeamName());
-                        tvSecondGroupA.setText(secondGroupA[0].getTeamName());
-                        tvFirstGroupD.setText(firstGroupD[0].getTeamName());
-                        tvSecondGroupC.setText(secondGroupC[0].getTeamName());
-                        tvFirstGroupF.setText(firstGroupF[0].getTeamName());
-                        tvSecondGroupE.setText(secondGroupE[0].getTeamName());
-                        tvFirstGroupH.setText(firstGroupH[0].getTeamName());
-                        tvSecondGroupG.setText(secondGroupG[0].getTeamName());
+                        if (firstGroupA[0] != null)
+                            tvFirstGroupA.setText(firstGroupA[0].getTeamName());
+                        if (secondGroupB[0] != null)
+                            tvSecondGroupB.setText(secondGroupB[0].getTeamName());
+                        if (firstGroupC[0] != null)
+                            tvFirstGroupC.setText(firstGroupC[0].getTeamName());
+                        if (secondGroupD[0] != null)
+                            tvSecondGroupD.setText(secondGroupD[0].getTeamName());
+                        if (firstGroupE[0] != null)
+                            tvFirstGroupE.setText(firstGroupE[0].getTeamName());
+                        if (secondGroupF[0] != null)
+                            tvSecondGroupF.setText(secondGroupF[0].getTeamName());
+                        if (firstGroupG[0] != null)
+                            tvFirstGroupG.setText(firstGroupG[0].getTeamName());
+                        if (secondGroupH[0] != null)
+                            tvSecondGroupH.setText(secondGroupH[0].getTeamName());
+                        if (firstGroupB[0] != null)
+                            tvFirstGroupB.setText(firstGroupB[0].getTeamName());
+                        if (secondGroupA[0] != null)
+                            tvSecondGroupA.setText(secondGroupA[0].getTeamName());
+                        if (firstGroupD[0] != null)
+                            tvFirstGroupD.setText(firstGroupD[0].getTeamName());
+                        if (secondGroupC[0] != null)
+                            tvSecondGroupC.setText(secondGroupC[0].getTeamName());
+                        if (firstGroupF[0] != null)
+                            tvFirstGroupF.setText(firstGroupF[0].getTeamName());
+                        if (secondGroupE[0] != null)
+                            tvSecondGroupE.setText(secondGroupE[0].getTeamName());
+                        if (firstGroupH[0] != null)
+                            tvFirstGroupH.setText(firstGroupH[0].getTeamName());
+                        if (secondGroupG[0] != null)
+                            tvSecondGroupG.setText(secondGroupG[0].getTeamName());
 
                         displayTeams();
 
@@ -267,10 +283,10 @@ public class OitavasDeFinalFragment extends Fragment {
                     match1.setTeam1(firstGroupA[0].getTeamName());
                     match1.setTeam1(secondGroupB[0].getTeamName());
 
-                    match1.setMatchLabel("Match Fran");
-
-
-                    matchDatabase.matchDaoAccess().insertSingleMatchWinner(match1);
+                    // match1.setMatchLabel("Match Fran");
+                    //
+                    //
+                    // matchDatabase.matchDaoAccess().insertSingleMatchWinner(match1);
                 }
 
 
@@ -291,21 +307,20 @@ public class OitavasDeFinalFragment extends Fragment {
 
         rv.setAdapter(matchAdapter);
 
-        // Team team = new Team();
-        // team.setTeamName("Fran");
+        // Match match = new Match();
+        // match.setTeam1(firstGroupA[0].getTeamName());
+        // match.setTeam2(secondGroupB[0].getTeamName());
+        // matchAdapter.addItem(match);
 
-        // matchAdapter.addItem(team);
 
         matchAdapter.addItem(new Match(firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupE[0].getTeamName(), secondGroupF[0].getTeamName()));
-        matchAdapter.addItem(new Match(firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName()));
+        // matchAdapter.addItem(new Match(firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupB[0].getTeamName(), secondGroupA[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupD[0].getTeamName(), secondGroupC[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupF[0].getTeamName(), secondGroupE[0].getTeamName()));
-        matchAdapter.addItem(new Match(firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName()));
-
-
+        // matchAdapter.addItem(new Match(firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName()));
 
 
         // matchAdapter.addItem(firstGroupA[0]);

@@ -18,4 +18,17 @@ public interface MatchDaoAccess {
     @Query("UPDATE `Match` set matchWinner = :matchWinner where matchId = :matchId")
             void updateMatchWinner(String matchWinner, int matchId);
 
+    @Query("UPDATE `Match` set team1 = :team1 where matchId = :matchId")
+    void updateTeam1(String team1, int matchId);
+
+    @Query("UPDATE `Match` set team2 = :team2 where matchId = :matchId")
+    void updateTeam2(String team2, int matchId);
+
+    @Query("UPDATE `Match` set matchLabel = :matchLabel where matchId = :matchId")
+    void updateMatchLabel(String matchLabel, int matchId);
+
+    @Query("DELETE FROM `Match` WHERE matchId = :matchId")
+    void delete(int matchId);
+
+
 }

@@ -72,6 +72,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
         Match match = null;
 
+        private int pos = 0;
+
         @BindView(R.id.tv_first_group)
         TextView tvFirstGroup;
         @BindView(R.id.tv_second_group)
@@ -84,11 +86,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         RadioButton rbTeam1;
         @BindView(R.id.rb_team2)
         RadioButton rbTeam2;
+        MatchDatabase matchDatabase;
 
         ViewHolder(View itemView) {
             super(itemView);
 
             ButterKnife.bind(this, itemView);
+
         }
 
 
@@ -101,6 +105,24 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
             tvSecondGroup.setText(match.getTeam2());
 
             tvMatch.setText((position + 1) + "");
+
+            pos = position + 1;
+
+
+            matchDatabase = Room.databaseBuilder(activity, MatchDatabase.class, "match_result")
+                    .fallbackToDestructiveMigration()
+                    .build();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    matchDatabase.matchDaoAccess().updateTeam1(tvFirstGroup.getText().toString(), getAdapterPosition() + 1);
+                    matchDatabase.matchDaoAccess().updateTeam2(tvSecondGroup.getText().toString(), getAdapterPosition() + 1);
+                    matchDatabase.matchDaoAccess().updateMatchLabel("Match" + tvMatch.getText().toString(), getAdapterPosition() + 1);
+
+                }
+            }).start();
 
 
             // Listeners
@@ -133,23 +155,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                     @Override
                     public void run() {
 
-
-                        // if (firstGroupA[0] != null) {
-
-                        // Match match1 = new Match();
-                        // match1.setMatchWinner(finalTeamWinner);
-                        // match1.setMatchLabel("Match 1");
-
-                        MatchDatabase matchDatabase = Room.databaseBuilder(activity, MatchDatabase.class, "match_result")
-                                .fallbackToDestructiveMigration()
-                                .build();
-
-                        // matchDatabase.matchDaoAccess().insertSingleMatchWinner(match1);
-
-                        matchDatabase.matchDaoAccess().updateMatchWinner(finalTeamWinner, match.getMatchId());
-
-                        // }
-
+                        matchDatabase.matchDaoAccess().updateMatchWinner(finalTeamWinner, getAdapterPosition() + 1);
 
                     }
                 }).start();
