@@ -5,6 +5,8 @@ import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +16,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.francislainy.campos.worldcupmatchsimulator.R;
-import com.francislainy.campos.worldcupmatchsimulator.database.MatchResult;
-import com.francislainy.campos.worldcupmatchsimulator.database.MatchResultDatabase;
+import com.francislainy.campos.worldcupmatchsimulator.adapter.MatchAdapter;
+import com.francislainy.campos.worldcupmatchsimulator.database.Match;
+import com.francislainy.campos.worldcupmatchsimulator.database.MatchDatabase;
 import com.francislainy.campos.worldcupmatchsimulator.database.Team;
 import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+// import com.francislainy.campos.worldcupmatchsimulator.database.MatchDatabase;
 
 public class OitavasDeFinalFragment extends Fragment {
 
@@ -93,11 +98,33 @@ public class OitavasDeFinalFragment extends Fragment {
     @BindView(R.id.rd_match8_team2)
     RadioButton rdMatch8Team2;
 
+    @BindView(R.id.rv)
+    RecyclerView rv;
+
 
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
     // private static final String DATABASE_NAME = "teams_db";
-    private MatchResultDatabase matchResultDatabase;
+    private MatchDatabase matchDatabase;
+
+
+    final Team[] firstGroupA = {null};
+    final Team[] secondGroupB = {null};
+    final Team[] firstGroupC = {null};
+    final Team[] secondGroupD = {null};
+    final Team[] firstGroupE = {null};
+    final Team[] secondGroupF = {null};
+    final Team[] firstGroupG = {null};
+    final Team[] secondGroupH = {null};
+    final Team[] firstGroupB = {null};
+    final Team[] secondGroupA = {null};
+    final Team[] firstGroupD = {null};
+    final Team[] secondGroupC = {null};
+    final Team[] firstGroupF = {null};
+    final Team[] secondGroupE = {null};
+    final Team[] firstGroupH = {null};
+    final Team[] secondGroupG = {null};
+
 
     public OitavasDeFinalFragment() {
         // Required empty public constructor
@@ -112,26 +139,10 @@ public class OitavasDeFinalFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+
         teamDatabase = Room.databaseBuilder(getContext(), TeamDatabase.class, DATABASE_NAME)
                 .fallbackToDestructiveMigration()
                 .build();
-
-        final Team[] firstGroupA = {null};
-        final Team[] secondGroupB = {null};
-        final Team[] firstGroupC = {null};
-        final Team[] secondGroupD = {null};
-        final Team[] firstGroupE = {null};
-        final Team[] secondGroupF = {null};
-        final Team[] firstGroupG = {null};
-        final Team[] secondGroupH = {null};
-        final Team[] firstGroupB = {null};
-        final Team[] secondGroupA = {null};
-        final Team[] firstGroupD = {null};
-        final Team[] secondGroupC = {null};
-        final Team[] firstGroupF = {null};
-        final Team[] secondGroupE = {null};
-        final Team[] firstGroupH = {null};
-        final Team[] secondGroupG = {null};
 
         final Handler handler = new Handler();
         new Thread(new Runnable() {
@@ -176,6 +187,8 @@ public class OitavasDeFinalFragment extends Fragment {
                         tvFirstGroupH.setText(firstGroupH[0].getTeamName());
                         tvSecondGroupG.setText(secondGroupG[0].getTeamName());
 
+                        displayTeams();
+
                     }
                 });
 
@@ -183,11 +196,16 @@ public class OitavasDeFinalFragment extends Fragment {
         }).start();
 
 
-        matchResultDatabase = Room.databaseBuilder(getContext(), MatchResultDatabase.class, "match_result")
+        matchDatabase = Room.databaseBuilder(getContext(), MatchDatabase.class, "match_result")
                 .fallbackToDestructiveMigration()
                 .build();
 
+
+        addDataToMatchDatabase();
+
+
         final int[] selectedId = {0};
+
 
         rdMatch1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -216,12 +234,12 @@ public class OitavasDeFinalFragment extends Fragment {
 
                         if (firstGroupA[0] != null) {
 
-                            MatchResult matchResult1 = new MatchResult();
-                            matchResult1.setMatchWinner(finalTeam.getTeamId());
-                            matchResult1.setMatchLabel("Match 1");
+                            Match match1 = new Match();
+                            // match1.setMatchWinner(finalTeam.getTeamId());
+                            // match1.setMatchLabel("Match 1");
 
 
-                            matchResultDatabase.matchDaoAccess().insertSingleMatchWinner(matchResult1);
+                            // matchDatabase.matchDaoAccess().insertSingleMatchWinner(match1);
                         }
 
 
@@ -236,5 +254,77 @@ public class OitavasDeFinalFragment extends Fragment {
         return view;
     }
 
-}
 
+    private void addDataToMatchDatabase() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                if (firstGroupA[0] != null && secondGroupB[0] != null) {
+
+                    Match match1 = new Match();
+                    match1.setTeam1(firstGroupA[0].getTeamName());
+                    match1.setTeam1(secondGroupB[0].getTeamName());
+
+                    match1.setMatchLabel("Match Fran");
+
+
+                    matchDatabase.matchDaoAccess().insertSingleMatchWinner(match1);
+                }
+
+
+            }
+        }).start();
+
+    }
+
+
+    private void displayTeams() {
+
+        MatchAdapter matchAdapter = new MatchAdapter(getActivity());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(layoutManager);
+        rv.setNestedScrollingEnabled(false);
+
+        rv.setAdapter(matchAdapter);
+
+        // Team team = new Team();
+        // team.setTeamName("Fran");
+
+        // matchAdapter.addItem(team);
+
+        matchAdapter.addItem(new Match(firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupE[0].getTeamName(), secondGroupF[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupB[0].getTeamName(), secondGroupA[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupD[0].getTeamName(), secondGroupC[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupF[0].getTeamName(), secondGroupE[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName()));
+
+
+
+
+        // matchAdapter.addItem(firstGroupA[0]);
+        // matchAdapter.addItem(secondGroupB[0]);
+        // matchAdapter.addItem(firstGroupC[0]);
+        // matchAdapter.addItem(secondGroupD[0]);
+        // matchAdapter.addItem(firstGroupE[0]);
+        // matchAdapter.addItem(secondGroupF[0]);
+        // matchAdapter.addItem(firstGroupG[0]);
+        // matchAdapter.addItem(secondGroupH[0]);
+        // matchAdapter.addItem(firstGroupB[0]);
+        // matchAdapter.addItem(secondGroupA[0]);
+        // matchAdapter.addItem(firstGroupD[0]);
+        // matchAdapter.addItem(secondGroupC[0]);
+        // matchAdapter.addItem(firstGroupF[0]);
+        // matchAdapter.addItem(secondGroupE[0]);
+        // matchAdapter.addItem(firstGroupH[0]);
+        // matchAdapter.addItem(secondGroupG[0]);
+
+    }
+
+}
