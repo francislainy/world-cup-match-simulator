@@ -37,6 +37,8 @@ public class TeamGroupFragment extends Fragment {
     Button btn3;
     @BindView(R.id.btn4)
     Button btn4;
+    @BindView(R.id.btn_next)
+    Button btnNext;
     @BindView(R.id.ll_1)
     LinearLayout ll_1;
     @BindView(R.id.ll_2)
@@ -50,10 +52,12 @@ public class TeamGroupFragment extends Fragment {
     @BindView(R.id.tv_group_name)
     TextView tvGroupName;
 
-    int teamId1 = 0;
-    int teamId2 = 0;
-    int teamId3 = 0;
-    int teamId4 = 0;
+    boolean hasLayoutWithoutChild = true;
+
+    int positionTeamId1 = 0;
+    int positionTeamId2 = 0;
+    int positionTeamId3 = 0;
+    int positionTeamId4 = 0;
 
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
@@ -229,6 +233,7 @@ public class TeamGroupFragment extends Fragment {
 
                     layout.setOnDragListener(new MyDragListener());
                 }
+
             }
 
 
@@ -257,6 +262,8 @@ public class TeamGroupFragment extends Fragment {
             int id = view.getId();
             LinearLayout layout = getActivity().findViewById(id);
 
+            boolean hasNoChild = false;
+
             switch (action) {
 
                 case ACTION_DROP:
@@ -268,77 +275,70 @@ public class TeamGroupFragment extends Fragment {
                     LinearLayout container = (LinearLayout) view;
                     view1.setVisibility(View.VISIBLE);
 
+
                     if (container.getChildCount() == 0) {
                         container.addView(view1); // Only view not already filled can have a child added to it
 
                         layout.setOnDragListener(null);
 
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
 
-                                setPositionWithinGroup(ll_1, 1);
-                                setPositionWithinGroup(ll_2, 2);
-                                setPositionWithinGroup(ll_3, 3);
-                                setPositionWithinGroup(ll_4, 4);
+                        setPositionWithinGroup(ll_1, 1);
+                        setPositionWithinGroup(ll_2, 2);
+                        setPositionWithinGroup(ll_3, 3);
+                        setPositionWithinGroup(ll_4, 4);
 
-                                String teamGroupName = tvGroupName.getText().toString().toLowerCase();
+                        String teamGroupName = tvGroupName.getText().toString().toLowerCase();
 
-                                switch (teamGroupName) {
+                        switch (teamGroupName) {
 
-                                    case "a":
+                            case "group a":
 
-                                        updateDatabaseStartingFromTeamId(1);
+                                updateDatabaseStartingFromTeamId(1);
 
-                                        break;
+                                break;
 
-                                    case "b":
+                            case "group b":
 
-                                        updateDatabaseStartingFromTeamId(5);
+                                updateDatabaseStartingFromTeamId(5);
 
-                                        break;
+                                break;
 
-                                    case "c":
+                            case "group c":
 
-                                        updateDatabaseStartingFromTeamId(9);
+                                updateDatabaseStartingFromTeamId(9);
 
-                                        break;
+                                break;
 
-                                    case "d":
+                            case "group d":
 
-                                        updateDatabaseStartingFromTeamId(13);
+                                updateDatabaseStartingFromTeamId(13);
 
-                                        break;
+                                break;
 
-                                    case "e":
+                            case "group e":
 
-                                        updateDatabaseStartingFromTeamId(17);
+                                updateDatabaseStartingFromTeamId(17);
 
-                                        break;
+                                break;
 
-                                    case "f":
+                            case "group f":
 
-                                        updateDatabaseStartingFromTeamId(21);
+                                updateDatabaseStartingFromTeamId(21);
 
-                                        break;
+                                break;
 
-                                    case "g":
+                            case "group g":
 
-                                        updateDatabaseStartingFromTeamId(25);
+                                updateDatabaseStartingFromTeamId(25);
 
-                                        break;
+                                break;
 
-                                    case "h":
+                            case "group h":
 
-                                        updateDatabaseStartingFromTeamId(29);
+                                updateDatabaseStartingFromTeamId(29);
 
-                                        break;
-                                }
-
-                            }
-
-                        }).start();
-
+                                break;
+                        }
 
                     } else {
 
@@ -359,12 +359,19 @@ public class TeamGroupFragment extends Fragment {
     }
 
 
-    private void updateDatabaseStartingFromTeamId(int id) {
+    private void updateDatabaseStartingFromTeamId(final int id) {
 
-        teamDatabase.daoAccess().updateTeam(id, teamId1);
-        teamDatabase.daoAccess().updateTeam(id + 1, teamId2);
-        teamDatabase.daoAccess().updateTeam(id + 2, teamId3);
-        teamDatabase.daoAccess().updateTeam(id + 3, teamId4);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                teamDatabase.daoAccess().updateTeam(id, positionTeamId1);
+                teamDatabase.daoAccess().updateTeam(id + 1, positionTeamId2);
+                teamDatabase.daoAccess().updateTeam(id + 2, positionTeamId3);
+                teamDatabase.daoAccess().updateTeam(id + 3, positionTeamId4);
+
+            }
+        }).start();
 
     }
 
@@ -377,16 +384,16 @@ public class TeamGroupFragment extends Fragment {
             switch (teamViewIdLayout) {
 
                 case R.id.btn1:
-                    teamId1 = position;
+                    positionTeamId1 = position;
                     break;
                 case R.id.btn2:
-                    teamId2 = position;
+                    positionTeamId2 = position;
                     break;
                 case R.id.btn3:
-                    teamId3 = position;
+                    positionTeamId3 = position;
                     break;
                 case R.id.btn4:
-                    teamId4 = position;
+                    positionTeamId4 = position;
                     break;
             }
 

@@ -70,10 +70,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        Match match = null;
-
-        private int pos = 0;
-
         @BindView(R.id.tv_first_group)
         TextView tvFirstGroup;
         @BindView(R.id.tv_second_group)
@@ -87,6 +83,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         @BindView(R.id.rb_team2)
         RadioButton rbTeam2;
         MatchDatabase matchDatabase;
+
+        Match match = null;
+
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -106,9 +105,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
             tvMatch.setText((position + 1) + "");
 
-            pos = position + 1;
-
-
             matchDatabase = Room.databaseBuilder(activity, MatchDatabase.class, "match_result")
                     .fallbackToDestructiveMigration()
                     .build();
@@ -126,12 +122,12 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
 
             // Listeners
-            rg.setOnCheckedChangeListener(onClickRadioButonUpdateDatabase);
+            rg.setOnCheckedChangeListener(onClickRadioButtonUpdateDatabase);
 
         }
 
 
-        private RadioGroup.OnCheckedChangeListener onClickRadioButonUpdateDatabase = new RadioGroup.OnCheckedChangeListener() {
+        private RadioGroup.OnCheckedChangeListener onClickRadioButtonUpdateDatabase = new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
@@ -158,6 +154,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                         matchDatabase.matchDaoAccess().updateMatchWinner(finalTeamWinner, getAdapterPosition() + 1);
 
                     }
+
                 }).start();
 
             }
@@ -166,6 +163,4 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
     }
 
-
 }
-

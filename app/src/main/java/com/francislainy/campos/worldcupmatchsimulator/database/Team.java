@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Team {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int teamId;
 
     private String teamName;

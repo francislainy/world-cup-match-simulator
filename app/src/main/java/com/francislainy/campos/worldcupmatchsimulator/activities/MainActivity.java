@@ -11,7 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.francislainy.campos.worldcupmatchsimulator.R;
 import com.francislainy.campos.worldcupmatchsimulator.database.Team;
 import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
-import com.francislainy.campos.worldcupmatchsimulator.fragments.OitavasDeFinalFragment;
+import com.francislainy.campos.worldcupmatchsimulator.fragments.ConfirmFragment;
+import com.francislainy.campos.worldcupmatchsimulator.fragments.KnockoutsFragment;
 import com.francislainy.campos.worldcupmatchsimulator.fragments.TeamGroupFragment;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static int NUMBER_OF_PAGES = 9;
+    public final static int NUMBER_OF_PAGES = 11;
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
 
@@ -77,29 +78,30 @@ public class MainActivity extends AppCompatActivity {
 
                     Team t = new Team();
                     t.setTeamName(teamList.get(i));
+                    t.setTeamId(i+1);
 
                     if (i<4) {
                         t.setTeamGroup("A");
                     }
-                    else if (i<7) {
+                    else if (i<8) {
                         t.setTeamGroup("B");
                     }
-                    else if (i<11) {
+                    else if (i<12) {
                         t.setTeamGroup("C");
                     }
-                    else if (i<15) {
+                    else if (i<16) {
                         t.setTeamGroup("D");
                     }
-                    else if (i<19) {
+                    else if (i<20) {
                         t.setTeamGroup("E");
                     }
-                    else if (i<23) {
+                    else if (i<24) {
                         t.setTeamGroup("F");
                     }
-                    else if (i<27) {
+                    else if (i<28) {
                         t.setTeamGroup("G");
                     }
-                    else if (i<31) {
+                    else if (i<32) {
                         t.setTeamGroup("H");
                     }
 
@@ -146,7 +148,11 @@ public class MainActivity extends AppCompatActivity {
                 case 7:
                     return TeamGroupFragment.newInstance("h");
                 case 8:
-                    return new OitavasDeFinalFragment();
+                    return new ConfirmFragment();
+                case 9:
+                    return KnockoutsFragment.newInstance("oitavas");
+                case 10:
+                    return KnockoutsFragment.newInstance("quartas");
                 default:
                     return TeamGroupFragment.newInstance("a");
             }

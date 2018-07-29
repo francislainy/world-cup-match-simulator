@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 // import com.francislainy.campos.worldcupmatchsimulator.database.MatchDatabase;
 
-public class OitavasDeFinalFragment extends Fragment {
+public class KnockoutsFragment extends Fragment {
 
     @BindView(R.id.rv)
     RecyclerView rv;
@@ -48,8 +48,19 @@ public class OitavasDeFinalFragment extends Fragment {
     final Team[] secondGroupG = {null};
 
 
-    public OitavasDeFinalFragment() {
+    public KnockoutsFragment() {
         // Required empty public constructor
+    }
+
+    public static KnockoutsFragment newInstance(String stage) {
+
+        KnockoutsFragment fragment = new KnockoutsFragment();
+
+        Bundle args = new Bundle();
+        args.putString("stage", stage);
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
 
@@ -57,7 +68,7 @@ public class OitavasDeFinalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_oitavas_de_final, container, false);
+        View view = inflater.inflate(R.layout.fragment_knockouts, container, false);
 
         ButterKnife.bind(this, view);
 
@@ -66,6 +77,27 @@ public class OitavasDeFinalFragment extends Fragment {
                 .fallbackToDestructiveMigration()
                 .build();
 
+        Bundle bundle = getArguments();
+        String stage = "";
+
+        if (bundle != null) {
+            stage = bundle.getString("stage");
+        }
+
+        if (stage.equals("oitavas")) {
+
+            oitavas();
+        }
+        else if (stage.equals("quartas")) {
+            quartas();
+        }
+
+
+        return view;
+    }
+
+
+    private void oitavas() {
         final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
@@ -100,9 +132,31 @@ public class OitavasDeFinalFragment extends Fragment {
 
             }
         }).start();
+    }
 
 
-        return view;
+    private void quartas() {
+
+        MatchAdapter matchAdapter = new MatchAdapter(getActivity());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(layoutManager);
+        rv.setNestedScrollingEnabled(false);
+
+        rv.setAdapter(matchAdapter);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        matchAdapter.addItem(new Match(firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName())); //todo: get match winners instead
+        matchAdapter.addItem(new Match(firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupE[0].getTeamName(), secondGroupF[0].getTeamName()));
+        matchAdapter.addItem(new Match(firstGroupB[0].getTeamName(), secondGroupA[0].getTeamName()));
+
     }
 
 
