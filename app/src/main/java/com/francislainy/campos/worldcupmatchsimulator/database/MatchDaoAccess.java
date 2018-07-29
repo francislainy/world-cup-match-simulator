@@ -16,7 +16,7 @@ public interface MatchDaoAccess {
     void insertSingleMatchWinner(Match match);
 
     @Query("UPDATE `Match` set matchWinner = :matchWinner where matchId = :matchId")
-            void updateMatchWinner(String matchWinner, int matchId);
+    void updateMatchWinner(String matchWinner, int matchId);
 
     @Query("UPDATE `Match` set team1 = :team1 where matchId = :matchId")
     void updateTeam1(String team1, int matchId);

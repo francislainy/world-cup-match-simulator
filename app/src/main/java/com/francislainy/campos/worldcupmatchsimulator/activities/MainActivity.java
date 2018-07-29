@@ -29,12 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // FragmentManager fm = getSupportFragmentManager();
-        // FragmentTransaction transaction = fm.beginTransaction();
-        // TeamGroupFragment fragment = new TeamGroupFragment();
-        // transaction.replace(R.id.fragment, fragment).commit();
-
-
         teamDatabase = Room.databaseBuilder(this, TeamDatabase.class, DATABASE_NAME)
                 .fallbackToDestructiveMigration()
                 .build();
@@ -43,117 +37,75 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Team team2 = new Team();
-                // team2.setTeamId("4");
-                team2.setTeamName("Egito20");
-                team2.setTeamGroup("Group A");
-                // teamDatabase.daoAccess().insertSingleTeam(team2);
-
                 List<Team> teams = new ArrayList<>();
 
-                ArrayList<String> listGroupA = new ArrayList<>();
-                listGroupA.add("Russia"); //todo: have team names in English
-                listGroupA.add("Arabia Saudita");
-                listGroupA.add("Egito");
-                listGroupA.add("Uruguai");
+                ArrayList<String> teamList = new ArrayList();
+                teamList.add("Russia"); //todo: have team names in English
+                teamList.add("Arabia Saudita");
+                teamList.add("Egito");
+                teamList.add("Uruguai");
+                teamList.add("Portugal");
+                teamList.add("Espanha");
+                teamList.add("Marrocos");
+                teamList.add("Ira");
+                teamList.add("Franca");
+                teamList.add("Peru");
+                teamList.add("Marrocos");
+                teamList.add("Dinamarca");
+                teamList.add("Islandia");
+                teamList.add("Argentina");
+                teamList.add("Croacia");
+                teamList.add("Nigeria");
+                teamList.add("Brasil");
+                teamList.add("Suica");
+                teamList.add("Costa Rica");
+                teamList.add("Servia");
+                teamList.add("Alemanha");
+                teamList.add("Mexico");
+                teamList.add("Suecia");
+                teamList.add("Coreia do Sul");
+                teamList.add("Belgica");
+                teamList.add("Panama");
+                teamList.add("Tunisia");
+                teamList.add("Inglaterra");
+                teamList.add("Polonia");
+                teamList.add("Senegal");
+                teamList.add("Colombia");
+                teamList.add("Japao");
 
-                for (String teamName : listGroupA) {
+                for (int i = 0; i < teamList.size(); i++) {
+
                     Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("A");
+                    t.setTeamName(teamList.get(i));
+
+                    if (i<4) {
+                        t.setTeamGroup("A");
+                    }
+                    else if (i<7) {
+                        t.setTeamGroup("B");
+                    }
+                    else if (i<11) {
+                        t.setTeamGroup("C");
+                    }
+                    else if (i<15) {
+                        t.setTeamGroup("D");
+                    }
+                    else if (i<19) {
+                        t.setTeamGroup("E");
+                    }
+                    else if (i<23) {
+                        t.setTeamGroup("F");
+                    }
+                    else if (i<27) {
+                        t.setTeamGroup("G");
+                    }
+                    else if (i<31) {
+                        t.setTeamGroup("H");
+                    }
+
                     teams.add(t);
                 }
 
-                ArrayList<String> listGroupB = new ArrayList<>();
-                listGroupB.add("Portugal");
-                listGroupB.add("Espanha");
-                listGroupB.add("Marrocos");
-                listGroupB.add("Ira");
-
-                for (String teamName : listGroupB) {
-                    Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("B");
-                    teams.add(t);
-                }
-
-                ArrayList<String> listGroupC = new ArrayList<>();
-                listGroupC.add("Franca");
-                listGroupC.add("Peru");
-                listGroupC.add("Marrocos");
-                listGroupC.add("Dinamarca");
-
-                for (String teamName : listGroupC) {
-                    Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("C");
-                    teams.add(t);
-                }
-
-                ArrayList<String> listGroupD = new ArrayList<>();
-                listGroupD.add("Islandia");
-                listGroupD.add("Argentina");
-                listGroupD.add("Croacia");
-                listGroupD.add("Nigeria");
-
-                for (String teamName : listGroupD) {
-                    Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("D");
-                    teams.add(t);
-                }
-
-                ArrayList<String> listGroupE = new ArrayList<>();
-                listGroupE.add("Brasil");
-                listGroupE.add("Suica");
-                listGroupE.add("Costa Rica");
-                listGroupE.add("Servia");
-
-                for (String teamName : listGroupE) {
-                    Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("E");
-                    teams.add(t);
-                }
-
-                ArrayList<String> listGroupF = new ArrayList<>();
-                listGroupF.add("Alemanha");
-                listGroupF.add("Mexico");
-                listGroupF.add("Suecia");
-                listGroupF.add("Coreia do Sul");
-
-                for (String teamName : listGroupF) {
-                    Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("F");
-                    teams.add(t);
-                }
-
-                ArrayList<String> listGroupG = new ArrayList<>();
-                listGroupG.add("Belgica");
-                listGroupG.add("Panama");
-                listGroupG.add("Tunisia");
-                listGroupG.add("Inglaterra");
-
-                for (String teamName : listGroupG) {
-                    Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("G");
-                    teams.add(t);
-                }
-
-                ArrayList<String> listGroupH = new ArrayList<>();
-                listGroupH.add("Polonia");
-                listGroupH.add("Senegal");
-                listGroupH.add("Colombia");
-                listGroupH.add("Japao");
-
-                for (String teamName : listGroupH) {
-                    Team t = new Team();
-                    t.setTeamName(teamName);
-                    t.setTeamGroup("H");
-                    teams.add(t);
-                }
 
                 teamDatabase.daoAccess().insertMultipleTeams(teams);
 
@@ -198,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     return TeamGroupFragment.newInstance("a");
             }
+
         }
 
         @Override

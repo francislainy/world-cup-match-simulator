@@ -17,7 +17,7 @@ public interface DaoAccess {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSingleTeam(Team team);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMultipleTeams(List<Team> teamList);
 
     @Query("SELECT * FROM Team WHERE teamId = :teamId")

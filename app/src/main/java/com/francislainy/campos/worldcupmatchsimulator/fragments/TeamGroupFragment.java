@@ -282,40 +282,61 @@ public class TeamGroupFragment extends Fragment {
                                 setPositionWithinGroup(ll_3, 3);
                                 setPositionWithinGroup(ll_4, 4);
 
-                                if (tvGroupName.getText().toString().toLowerCase().contains("a")) {
+                                String teamGroupName = tvGroupName.getText().toString().toLowerCase();
 
-                                    updateDatabaseStartinFromTeamId(1);
+                                switch (teamGroupName) {
 
-                                } else if (tvGroupName.getText().toString().toLowerCase().contains("b")) {
+                                    case "a":
 
-                                    updateDatabaseStartinFromTeamId(5);
+                                        updateDatabaseStartingFromTeamId(1);
 
-                                } else if (tvGroupName.getText().toString().toLowerCase().contains("c")) {
+                                        break;
 
-                                    updateDatabaseStartinFromTeamId(9);
+                                    case "b":
 
-                                } else if (tvGroupName.getText().toString().toLowerCase().contains("d")) {
+                                        updateDatabaseStartingFromTeamId(5);
 
-                                    updateDatabaseStartinFromTeamId(13);
+                                        break;
 
-                                } else if (tvGroupName.getText().toString().toLowerCase().contains("e")) {
+                                    case "c":
 
-                                    updateDatabaseStartinFromTeamId(17);
+                                        updateDatabaseStartingFromTeamId(9);
 
-                                } else if (tvGroupName.getText().toString().toLowerCase().contains("f")) {
+                                        break;
 
-                                    updateDatabaseStartinFromTeamId(21);
+                                    case "d":
 
-                                } else if (tvGroupName.getText().toString().toLowerCase().contains("g")) {
+                                        updateDatabaseStartingFromTeamId(13);
 
-                                    updateDatabaseStartinFromTeamId(25);
+                                        break;
 
-                                } else if (tvGroupName.getText().toString().toLowerCase().contains("h")) {
+                                    case "e":
 
-                                    updateDatabaseStartinFromTeamId(29);
+                                        updateDatabaseStartingFromTeamId(17);
+
+                                        break;
+
+                                    case "f":
+
+                                        updateDatabaseStartingFromTeamId(21);
+
+                                        break;
+
+                                    case "g":
+
+                                        updateDatabaseStartingFromTeamId(25);
+
+                                        break;
+
+                                    case "h":
+
+                                        updateDatabaseStartingFromTeamId(29);
+
+                                        break;
                                 }
 
                             }
+
                         }).start();
 
 
@@ -338,7 +359,7 @@ public class TeamGroupFragment extends Fragment {
     }
 
 
-    private void updateDatabaseStartinFromTeamId(int id) {
+    private void updateDatabaseStartingFromTeamId(int id) {
 
         teamDatabase.daoAccess().updateTeam(id, teamId1);
         teamDatabase.daoAccess().updateTeam(id + 1, teamId2);
@@ -346,6 +367,7 @@ public class TeamGroupFragment extends Fragment {
         teamDatabase.daoAccess().updateTeam(id + 3, teamId4);
 
     }
+
 
     private void setPositionWithinGroup(LinearLayout layout, int position) {
         if (layout.getChildAt(0) != null) {
