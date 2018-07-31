@@ -106,6 +106,10 @@ public class TeamGroupFragment extends Fragment {
         }
 
 
+        addViewsToLinearLayouts();
+
+
+
         btn1.setOnTouchListener(new MyTouchListener());
         btn2.setOnTouchListener(new MyTouchListener());
         btn3.setOnTouchListener(new MyTouchListener());
@@ -122,6 +126,18 @@ public class TeamGroupFragment extends Fragment {
         }
 
         return view;
+    }
+
+
+    private void addViewsToLinearLayouts() {
+        cl.removeView(btn1);
+        cl.removeView(btn2);
+        cl.removeView(btn3);
+        cl.removeView(btn4);
+        ll_1.addView(btn1, 0);
+        ll_2.addView(btn2, 0);
+        ll_3.addView(btn3, 0);
+        ll_4.addView(btn4, 0);
     }
 
 
@@ -262,8 +278,6 @@ public class TeamGroupFragment extends Fragment {
             int id = view.getId();
             LinearLayout layout = getActivity().findViewById(id);
 
-            boolean hasNoChild = false;
-
             switch (action) {
 
                 case ACTION_DROP:
@@ -276,69 +290,48 @@ public class TeamGroupFragment extends Fragment {
                     view1.setVisibility(View.VISIBLE);
 
 
+                    if (container.getId() == ll_1.getId()) {
+
+                        // Remove the view temporarily from the layout and add it to cl
+                        View viewAlreadyOnL1 = ll_1.getChildAt(0);
+
+                        ll_1.removeView(viewAlreadyOnL1);
+
+
+                        cl.removeViewAt(0);
+
+                        cl.addView(viewAlreadyOnL1);
+
+
+                        ll_1.addView(view1); // container
+
+
+                        if (view1 == btn2) {
+
+                            View viewAlreadyOnl2 = btn2;
+
+                            ll_2.removeView(viewAlreadyOnl2);
+
+                            cl.removeView(viewAlreadyOnL1);
+
+
+                            ll_2.addView(viewAlreadyOnL1);
+
+                        }
+
+
+
+
+                    }
+
+
+
                     if (container.getChildCount() == 0) {
                         container.addView(view1); // Only view not already filled can have a child added to it
 
                         layout.setOnDragListener(null);
 
-
-                        setPositionWithinGroup(ll_1, 1);
-                        setPositionWithinGroup(ll_2, 2);
-                        setPositionWithinGroup(ll_3, 3);
-                        setPositionWithinGroup(ll_4, 4);
-
-                        String teamGroupName = tvGroupName.getText().toString().toLowerCase();
-
-                        switch (teamGroupName) {
-
-                            case "group a":
-
-                                updateDatabaseStartingFromTeamId(1);
-
-                                break;
-
-                            case "group b":
-
-                                updateDatabaseStartingFromTeamId(5);
-
-                                break;
-
-                            case "group c":
-
-                                updateDatabaseStartingFromTeamId(9);
-
-                                break;
-
-                            case "group d":
-
-                                updateDatabaseStartingFromTeamId(13);
-
-                                break;
-
-                            case "group e":
-
-                                updateDatabaseStartingFromTeamId(17);
-
-                                break;
-
-                            case "group f":
-
-                                updateDatabaseStartingFromTeamId(21);
-
-                                break;
-
-                            case "group g":
-
-                                updateDatabaseStartingFromTeamId(25);
-
-                                break;
-
-                            case "group h":
-
-                                updateDatabaseStartingFromTeamId(29);
-
-                                break;
-                        }
+                        updateDatabaseWithTeamPosition();
 
                     } else {
 
@@ -355,6 +348,114 @@ public class TeamGroupFragment extends Fragment {
             }
 
             return true;
+        }
+    }
+
+
+    // private class MyDragListener implements View.OnDragListener {
+    //
+    //     @Override
+    //     public boolean onDrag(View view, DragEvent dragEvent) {
+    //
+    //         int action = dragEvent.getAction();
+    //         int id = view.getId();
+    //         LinearLayout layout = getActivity().findViewById(id);
+    //
+    //         switch (action) {
+    //
+    //             case ACTION_DROP:
+    //
+    //                 View view1 = (View) dragEvent.getLocalState();
+    //                 ViewGroup owner = (ViewGroup) view1.getParent();
+    //
+    //                 owner.removeView(view1);
+    //                 LinearLayout container = (LinearLayout) view;
+    //                 view1.setVisibility(View.VISIBLE);
+    //
+    //
+    //                 if (container.getChildCount() == 0) {
+    //                     container.addView(view1); // Only view not already filled can have a child added to it
+    //
+    //                     layout.setOnDragListener(null);
+    //
+    //                     updateDatabaseWithTeamPosition();
+    //
+    //                 } else {
+    //
+    //                     if (layout.getChildCount() == 0) {
+    //                         layout.setOnDragListener(new MyDragListener());
+    //                     }
+    //
+    //                     // Cancel drag if can't put button inside view already occupied
+    //                     return false;
+    //                 }
+    //
+    //                 break;
+    //
+    //         }
+    //
+    //         return true;
+    //     }
+    // }
+
+
+    private void updateDatabaseWithTeamPosition() {
+        setPositionWithinGroup(ll_1, 1);
+        setPositionWithinGroup(ll_2, 2);
+        setPositionWithinGroup(ll_3, 3);
+        setPositionWithinGroup(ll_4, 4);
+
+        String teamGroupName = tvGroupName.getText().toString().toLowerCase();
+
+        switch (teamGroupName) {
+
+            case "group a":
+
+                updateDatabaseStartingFromTeamId(1);
+
+                break;
+
+            case "group b":
+
+                updateDatabaseStartingFromTeamId(5);
+
+                break;
+
+            case "group c":
+
+                updateDatabaseStartingFromTeamId(9);
+
+                break;
+
+            case "group d":
+
+                updateDatabaseStartingFromTeamId(13);
+
+                break;
+
+            case "group e":
+
+                updateDatabaseStartingFromTeamId(17);
+
+                break;
+
+            case "group f":
+
+                updateDatabaseStartingFromTeamId(21);
+
+                break;
+
+            case "group g":
+
+                updateDatabaseStartingFromTeamId(25);
+
+                break;
+
+            case "group h":
+
+                updateDatabaseStartingFromTeamId(29);
+
+                break;
         }
     }
 

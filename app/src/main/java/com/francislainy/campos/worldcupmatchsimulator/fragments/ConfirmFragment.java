@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.francislainy.campos.worldcupmatchsimulator.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -15,6 +17,9 @@ import butterknife.ButterKnife;
  */
 
 public class ConfirmFragment extends Fragment {
+
+    @BindView(R.id.btn_next)
+    Button btnNext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,9 +29,25 @@ public class ConfirmFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+
+        // Listeners
+        btnNext.setOnClickListener(onClickNext);
+
         return view;
     }
 
+
+    private View.OnClickListener onClickNext = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            // FragmentManager fm getActivity().getSupportFragmentManager();
+            // FragmentTransaction transaction = fm.beginTransaction();
+             //todo: replace fragment having maybe another activity if can't use replace together with the view pager already in place
+
+
+        }
+    };
 
 
 }

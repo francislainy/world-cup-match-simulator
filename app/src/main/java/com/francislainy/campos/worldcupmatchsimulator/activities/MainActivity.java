@@ -21,7 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public final static int NUMBER_OF_PAGES = 11;
-    private static final String DATABASE_NAME = "teams_db";
+    private static final String DATABASE_NAME = "teams_db"; //todo: have just one database
     private TeamDatabase teamDatabase;
 
 
@@ -148,11 +148,13 @@ public class MainActivity extends AppCompatActivity {
                 case 7:
                     return TeamGroupFragment.newInstance("h");
                 case 8:
-                    return new ConfirmFragment();
+                    return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
                 case 9:
                     return KnockoutsFragment.newInstance("oitavas");
                 case 10:
-                    return KnockoutsFragment.newInstance("quartas");
+                    return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
+                // case 11:
+                //     return KnockoutsFragment.newInstance("quartas");
                 default:
                     return TeamGroupFragment.newInstance("a");
             }
