@@ -47,6 +47,10 @@ public class TeamGroupFragment extends Fragment {
     LinearLayout ll_3;
     @BindView(R.id.ll_4)
     LinearLayout ll_4;
+    @BindView(R.id.ll_h1)
+    LinearLayout ll_h1;
+    @BindView(R.id.ll_h2)
+    LinearLayout ll_h2;
     @BindView(R.id.cl)
     ConstraintLayout cl;
     @BindView(R.id.tv_group_name)
@@ -109,7 +113,6 @@ public class TeamGroupFragment extends Fragment {
         addViewsToLinearLayouts();
 
 
-
         btn1.setOnTouchListener(new MyTouchListener());
         btn2.setOnTouchListener(new MyTouchListener());
         btn3.setOnTouchListener(new MyTouchListener());
@@ -130,10 +133,10 @@ public class TeamGroupFragment extends Fragment {
 
 
     private void addViewsToLinearLayouts() {
-        cl.removeView(btn1);
-        cl.removeView(btn2);
-        cl.removeView(btn3);
-        cl.removeView(btn4);
+        ll_h1.removeView(btn1);
+        ll_h1.removeView(btn2);
+        ll_h2.removeView(btn3);
+        ll_h2.removeView(btn4);
         ll_1.addView(btn1, 0);
         ll_2.addView(btn2, 0);
         ll_3.addView(btn3, 0);
@@ -282,52 +285,81 @@ public class TeamGroupFragment extends Fragment {
 
                 case ACTION_DROP:
 
-                    View view1 = (View) dragEvent.getLocalState();
-                    ViewGroup owner = (ViewGroup) view1.getParent();
+                    View viewBeingHold = (View) dragEvent.getLocalState();
+                    ViewGroup owner = (ViewGroup) viewBeingHold.getParent();
 
-                    owner.removeView(view1);
-                    LinearLayout container = (LinearLayout) view;
-                    view1.setVisibility(View.VISIBLE);
+                    owner.removeView(viewBeingHold);
+                    LinearLayout containerWhereViewWillBeDropped = (LinearLayout) view;
+                    viewBeingHold.setVisibility(View.VISIBLE);
 
 
-                    if (container.getId() == ll_1.getId()) {
+                    if (containerWhereViewWillBeDropped.getId() == ll_1.getId()) {
 
                         // Remove the view temporarily from the layout and add it to cl
                         View viewAlreadyOnL1 = ll_1.getChildAt(0);
-
                         ll_1.removeView(viewAlreadyOnL1);
+
+                        cl.removeViewAt(0);
+                        cl.addView(viewAlreadyOnL1);
+
+                        ll_1.addView(viewBeingHold); // containerWhereViewWillBeDropped
+
+                        // todo: add a case where view equals l1, so that app won't crash when view drop on its same original position
+                        if (viewBeingHold == btn2) {
+
+                            swapViewsLayout1(viewAlreadyOnL1, ll_2);
+                        } else if (viewBeingHold == btn3) {
+
+                            swapViewsLayout1(viewAlreadyOnL1, ll_3);
+                        } else if (viewBeingHold == btn4) {
+
+                            swapViewsLayout1(viewAlreadyOnL1, ll_4);
+                        }
+
+
+                    } else if (containerWhereViewWillBeDropped.getId() == ll_2.getId()) {
+
+                        // Remove the view temporarily from the layout and add it to cl
+                        View viewAlreadyOnL2 = ll_2.getChildAt(0);
+
+                        ll_2.removeView(viewAlreadyOnL2);
 
 
                         cl.removeViewAt(0);
 
-                        cl.addView(viewAlreadyOnL1);
+                        cl.addView(viewAlreadyOnL2);
 
 
-                        ll_1.addView(view1); // container
+                        ll_2.addView(viewBeingHold); // containerWhereViewWillBeDropped - btn1 now already on ll_2
 
 
-                        if (view1 == btn2) {
+                        // if (viewBeingHold == btn1) {
 
-                            View viewAlreadyOnl2 = btn2;
+                            cl.removeView(viewAlreadyOnL2);
 
-                            ll_2.removeView(viewAlreadyOnl2);
+                            ll_1.addView(viewAlreadyOnL2);
 
-                            cl.removeView(viewAlreadyOnL1);
+                        // }
 
-
-                            ll_2.addView(viewAlreadyOnL1);
-
-                        }
-
-
-
+                        //
+                        // if (viewBeingHold == btn2) { // A swap has occurred
+                        //
+                        //     // View viewAlreadyOnl1 = ll_1.getChildAt(0); //btn2 at this point in time
+                        //     //
+                        //     // ll_1.removeView(viewAlreadyOnl1);
+                        //
+                        //     cl.removeView(viewAlreadyOnL2);
+                        //
+                        //
+                        //     ll_1.addView(viewAlreadyOnL2);
+                        //
+                        // }
 
                     }
 
 
-
-                    if (container.getChildCount() == 0) {
-                        container.addView(view1); // Only view not already filled can have a child added to it
+                    if (containerWhereViewWillBeDropped.getChildCount() == 0) {
+                        containerWhereViewWillBeDropped.addView(viewBeingHold); // Only view not already filled can have a child added to it
 
                         layout.setOnDragListener(null);
 
@@ -349,6 +381,17 @@ public class TeamGroupFragment extends Fragment {
 
             return true;
         }
+    }
+
+    private void swapViewsLayout1(View viewAlreadyOnL1, LinearLayout layoutViewIsComingFrom) {
+        View viewAlreadyOnLayoutIsComingFrom = layoutViewIsComingFrom.getChildAt(0);
+
+        layoutViewIsComingFrom.removeView(viewAlreadyOnLayoutIsComingFrom);
+
+        cl.removeView(viewAlreadyOnL1);
+
+
+        layoutViewIsComingFrom.addView(viewAlreadyOnL1);
     }
 
 
