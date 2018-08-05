@@ -293,6 +293,8 @@ public class TeamGroupFragment extends Fragment {
 
                     }
 
+                     updateDatabaseWithTeamPosition();
+
                     // todo: check whether this is still necessary - 01/08/18
                     if (containerWhereViewWillBeDropped.getChildCount() == 0) {
                         containerWhereViewWillBeDropped.addView(viewBeingHold); // Only view not already filled can have a child added to it
@@ -317,6 +319,14 @@ public class TeamGroupFragment extends Fragment {
 
             return true;
         }
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        updateDatabaseWithTeamPosition();
     }
 
     private void swapViewsLayout1(View viewAlreadyOnL1, LinearLayout layoutViewIsComingFrom) {
