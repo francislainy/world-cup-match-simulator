@@ -47,11 +47,7 @@ public class TeamGroupFragment extends Fragment {
     LinearLayout ll_3;
     @BindView(R.id.ll_4)
     LinearLayout ll_4;
-    @BindView(R.id.ll_h1)
-    LinearLayout ll_h1;
-    @BindView(R.id.ll_h2)
-    LinearLayout ll_h2;
-    @BindView(R.id.cl)
+    @BindView(R.id.cl_1)
     ConstraintLayout cl;
     @BindView(R.id.tv_group_name)
     TextView tvGroupName;
@@ -110,8 +106,6 @@ public class TeamGroupFragment extends Fragment {
         }
 
 
-        addViewsToLinearLayouts();
-
 
         btn1.setOnTouchListener(new MyTouchListener());
         btn2.setOnTouchListener(new MyTouchListener());
@@ -129,18 +123,6 @@ public class TeamGroupFragment extends Fragment {
         }
 
         return view;
-    }
-
-
-    private void addViewsToLinearLayouts() {
-        ll_h1.removeView(btn1);
-        ll_h1.removeView(btn2);
-        ll_h2.removeView(btn3);
-        ll_h2.removeView(btn4);
-        ll_1.addView(btn1, 0);
-        ll_2.addView(btn2, 0);
-        ll_3.addView(btn3, 0);
-        ll_4.addView(btn4, 0);
     }
 
 
@@ -297,8 +279,8 @@ public class TeamGroupFragment extends Fragment {
                     View viewAlreadyOnLayout = containerWhereViewWillBeDropped.getChildAt(0);
                     containerWhereViewWillBeDropped.removeView(viewAlreadyOnLayout);
 
-                    cl.removeViewAt(0);
-                    cl.addView(viewAlreadyOnLayout);
+                    // cl.removeViewAt(0);
+                    cl.addView(viewAlreadyOnLayout); //todo: check whether adding the view to a temporary parent is necessary
 
                     containerWhereViewWillBeDropped.addView(viewBeingHold); // containerWhereViewWillBeDropped - btn1 now already on ll_2
 
