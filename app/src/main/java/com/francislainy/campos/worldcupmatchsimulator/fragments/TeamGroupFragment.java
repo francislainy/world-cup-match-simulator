@@ -277,17 +277,21 @@ public class TeamGroupFragment extends Fragment {
 
                     // Remove the view temporarily from the layout and add it to cl
                     View viewAlreadyOnLayout = containerWhereViewWillBeDropped.getChildAt(0);
-                    containerWhereViewWillBeDropped.removeView(viewAlreadyOnLayout);
 
-                    // cl.removeViewAt(0);
-                    cl.addView(viewAlreadyOnLayout); //todo: check whether adding the view to a temporary parent is necessary
+                    if (viewAlreadyOnLayout != null) {
 
-                    containerWhereViewWillBeDropped.addView(viewBeingHold); // containerWhereViewWillBeDropped - btn1 now already on ll_2
+                        containerWhereViewWillBeDropped.removeView(viewAlreadyOnLayout);
+
+                        // cl.removeViewAt(0);
+                        cl.addView(viewAlreadyOnLayout); //todo: check whether adding the view to a temporary parent is necessary
+
+                        containerWhereViewWillBeDropped.addView(viewBeingHold); // containerWhereViewWillBeDropped - btn1 now already on ll_2
 
 
-                    cl.removeView(viewAlreadyOnLayout);
-                    owner.addView(viewAlreadyOnLayout);
+                        cl.removeView(viewAlreadyOnLayout);
+                        owner.addView(viewAlreadyOnLayout);
 
+                    }
 
                     // todo: check whether this is still necessary - 01/08/18
                     if (containerWhereViewWillBeDropped.getChildCount() == 0) {
