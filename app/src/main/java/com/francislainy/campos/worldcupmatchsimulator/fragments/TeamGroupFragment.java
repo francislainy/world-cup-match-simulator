@@ -106,7 +106,6 @@ public class TeamGroupFragment extends Fragment {
         }
 
 
-
         btn1.setOnTouchListener(new MyTouchListener());
         btn2.setOnTouchListener(new MyTouchListener());
         btn3.setOnTouchListener(new MyTouchListener());
@@ -293,25 +292,7 @@ public class TeamGroupFragment extends Fragment {
 
                     }
 
-                     updateDatabaseWithTeamPosition();
-
-                    // todo: check whether this is still necessary - 01/08/18
-                    if (containerWhereViewWillBeDropped.getChildCount() == 0) {
-                        containerWhereViewWillBeDropped.addView(viewBeingHold); // Only view not already filled can have a child added to it
-
-                        layout.setOnDragListener(null);
-
-                        updateDatabaseWithTeamPosition();
-
-                    } else {
-
-                        if (layout.getChildCount() == 0) {
-                            layout.setOnDragListener(new MyDragListener());
-                        }
-
-                        // Cancel drag if can't put button inside view already occupied
-                        return false;
-                    }
+                    updateDatabaseWithTeamPosition();
 
                     break;
 
@@ -328,61 +309,6 @@ public class TeamGroupFragment extends Fragment {
 
         updateDatabaseWithTeamPosition();
     }
-
-    private void swapViewsLayout1(View viewAlreadyOnL1, LinearLayout layoutViewIsComingFrom) {
-
-        cl.removeView(viewAlreadyOnL1);
-
-
-        layoutViewIsComingFrom.addView(viewAlreadyOnL1);
-    }
-
-
-    // private class MyDragListener implements View.OnDragListener {
-    //
-    //     @Override
-    //     public boolean onDrag(View view, DragEvent dragEvent) {
-    //
-    //         int action = dragEvent.getAction();
-    //         int id = view.getId();
-    //         LinearLayout layout = getActivity().findViewById(id);
-    //
-    //         switch (action) {
-    //
-    //             case ACTION_DROP:
-    //
-    //                 View view1 = (View) dragEvent.getLocalState();
-    //                 ViewGroup owner = (ViewGroup) view1.getParent();
-    //
-    //                 owner.removeView(view1);
-    //                 LinearLayout container = (LinearLayout) view;
-    //                 view1.setVisibility(View.VISIBLE);
-    //
-    //
-    //                 if (container.getChildCount() == 0) {
-    //                     container.addView(view1); // Only view not already filled can have a child added to it
-    //
-    //                     layout.setOnDragListener(null);
-    //
-    //                     updateDatabaseWithTeamPosition();
-    //
-    //                 } else {
-    //
-    //                     if (layout.getChildCount() == 0) {
-    //                         layout.setOnDragListener(new MyDragListener());
-    //                     }
-    //
-    //                     // Cancel drag if can't put button inside view already occupied
-    //                     return false;
-    //                 }
-    //
-    //                 break;
-    //
-    //         }
-    //
-    //         return true;
-    //     }
-    // }
 
 
     private void updateDatabaseWithTeamPosition() {

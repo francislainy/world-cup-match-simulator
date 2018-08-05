@@ -12,7 +12,6 @@ import com.francislainy.campos.worldcupmatchsimulator.R;
 import com.francislainy.campos.worldcupmatchsimulator.database.Team;
 import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 import com.francislainy.campos.worldcupmatchsimulator.fragments.ConfirmFragment;
-import com.francislainy.campos.worldcupmatchsimulator.fragments.KnockoutsFragment;
 import com.francislainy.campos.worldcupmatchsimulator.fragments.TeamGroupFragment;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static int NUMBER_OF_PAGES = 11;
+    public final static int NUMBER_OF_PAGES = 9;
     private static final String DATABASE_NAME = "teams_db"; //todo: have just one database
     private TeamDatabase teamDatabase;
 
@@ -149,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
                     return TeamGroupFragment.newInstance("h");
                 case 8:
                     return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
-                case 9:
-                    return KnockoutsFragment.newInstance("oitavas");
-                case 10:
-                    return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
+                // case 9:
+                //     return KnockoutsFragment.newInstance("oitavas");
+                // case 10:
+                //     return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
                 // case 11:
                 //     return KnockoutsFragment.newInstance("quartas");
                 default:

@@ -1,15 +1,15 @@
 package com.francislainy.campos.worldcupmatchsimulator.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.francislainy.campos.worldcupmatchsimulator.R;
+import com.francislainy.campos.worldcupmatchsimulator.activities.KnockoutsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,11 +43,8 @@ public class ConfirmFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            // transaction.add(KnockoutsFragment.newInstance("oitavas"), )
-             //todo: replace fragment having maybe another activity if can't use replace together with the view pager already in place
-
+           Intent intent = new Intent(getActivity(), KnockoutsActivity.class);
+           startActivity(intent);
         }
     };
 
