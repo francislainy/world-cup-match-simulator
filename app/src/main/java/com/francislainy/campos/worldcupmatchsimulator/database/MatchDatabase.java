@@ -7,7 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
  * Created by Francislainy on 24/07/2018.
  */
 
-@Database(entities = {Match.class}, version = 3, exportSchema = false)
+@Database(entities = {Match.class}, version = 2, exportSchema = false)
 public abstract class MatchDatabase extends RoomDatabase {
 
     public abstract MatchDaoAccess matchDaoAccess();

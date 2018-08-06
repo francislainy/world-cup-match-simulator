@@ -12,8 +12,16 @@ import android.arch.persistence.room.Query;
 @Dao
 public interface MatchDaoAccess {
 
+    // @Insert(onConflict = OnConflictStrategy.REPLACE)
+    // void insertSingleMatchWinner(Match match);
+    //
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSingleMatchWinner(Match match);
+    void insertMatch(Match match);
+
+    // @Query("Insert into 'Match' values (matchWinner = :matchWinner) where matchId = :matchId") // todo: insert match winner
+    // void insertTeam1(String team1, int matchId);
+
+
 
     @Query("UPDATE `Match` set matchWinner = :matchWinner where matchId = :matchId")
     void updateMatchWinner(String matchWinner, int matchId);

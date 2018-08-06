@@ -113,9 +113,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                 @Override
                 public void run() {
 
-                    matchDatabase.matchDaoAccess().updateTeam1(tvFirstGroup.getText().toString(), getAdapterPosition() + 1);
-                    matchDatabase.matchDaoAccess().updateTeam2(tvSecondGroup.getText().toString(), getAdapterPosition() + 1);
-                    matchDatabase.matchDaoAccess().updateMatchLabel("Match" + tvMatch.getText().toString(), getAdapterPosition() + 1);
+                    matchDatabase.matchDaoAccess().insertMatch(match);
+                    // matchDatabase.matchDaoAccess().updateTeam1(tvFirstGroup.getText().toString(), getAdapterPosition() + 1);
+                    // matchDatabase.matchDaoAccess().updateTeam2(tvSecondGroup.getText().toString(), getAdapterPosition() + 1);
+                    // matchDatabase.matchDaoAccess().updateMatchLabel("Match" + tvMatch.getText().toString(), getAdapterPosition() + 1);
 
                 }
             }).start();

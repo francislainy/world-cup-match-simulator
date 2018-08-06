@@ -5,15 +5,19 @@ import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.francislainy.campos.worldcupmatchsimulator.R;
 import com.francislainy.campos.worldcupmatchsimulator.adapter.MatchAdapter;
 import com.francislainy.campos.worldcupmatchsimulator.database.Match;
+import com.francislainy.campos.worldcupmatchsimulator.database.MatchDatabase;
 import com.francislainy.campos.worldcupmatchsimulator.database.Team;
 import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 
@@ -26,6 +30,8 @@ public class KnockoutsFragment extends Fragment {
 
     @BindView(R.id.rv)
     RecyclerView rv;
+    @BindView(R.id.btn_next)
+    Button btnNext;
 
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
@@ -87,14 +93,28 @@ public class KnockoutsFragment extends Fragment {
         if (stage.equals("oitavas")) {
 
             oitavas();
-        }
-        else if (stage.equals("quartas")) {
+        } else if (stage.equals("quartas")) {
             quartas();
         }
 
 
+        // Listeners
+        btnNext.setOnClickListener(onClickNext);
+
         return view;
     }
+
+
+    private View.OnClickListener onClickNext = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.container_body, KnockoutsFragment.newInstance("quartas")).commit();
+
+        }
+    };
 
 
     private void oitavas() {
@@ -119,6 +139,19 @@ public class KnockoutsFragment extends Fragment {
                 secondGroupE[0] = teamDatabase.daoAccess().selectTeamByPosition("E", 2);
                 firstGroupH[0] = teamDatabase.daoAccess().selectTeamByPosition("H", 1);
                 secondGroupG[0] = teamDatabase.daoAccess().selectTeamByPosition("G", 2);
+
+
+                Match match1 = new Match();
+                match1.setTeam1(firstGroupA[0].getTeamName());
+                match1.setTeam2(secondGroupB[0].getTeamName());
+                match1.setMatchLabel("1");
+                match1.setMatchId(1);
+
+               MatchDatabase matchDatabase = Room.databaseBuilder(getContext(), MatchDatabase.class, "match_result")
+                        .fallbackToDestructiveMigration()
+                        .build();
+
+               // matchDatabase.matchDaoAccess().insertMatch(match1);
 
 
                 handler.post(new Runnable() {
@@ -179,16 +212,11 @@ public class KnockoutsFragment extends Fragment {
         matchAdapter.addItem(new Match(firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupE[0].getTeamName(), secondGroupF[0].getTeamName()));
-        if (secondGroupH[0] != null) {
-            matchAdapter.addItem(new Match(firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName()));
-        }
+        matchAdapter.addItem(new Match(firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupB[0].getTeamName(), secondGroupA[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupD[0].getTeamName(), secondGroupC[0].getTeamName()));
         matchAdapter.addItem(new Match(firstGroupF[0].getTeamName(), secondGroupE[0].getTeamName()));
-
-        if (firstGroupH[0] != null) {
-            matchAdapter.addItem(new Match(firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName()));
-        }
+        matchAdapter.addItem(new Match(firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName()));
 
     }
 
