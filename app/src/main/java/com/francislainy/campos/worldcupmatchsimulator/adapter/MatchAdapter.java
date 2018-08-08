@@ -105,6 +105,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
             tvMatch.setText((position + 1) + "");
 
+            rbTeam1.setChecked(true); // set first team selected by default
+
             matchDatabase = Room.databaseBuilder(activity, MatchDatabase.class, "match_result")
                     .fallbackToDestructiveMigration()
                     .build();
@@ -144,11 +146,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                     Toast.makeText(activity, "radio1", Toast.LENGTH_SHORT).show();
 
                     teamWinner = match.getTeam1();
+                    rbTeam2.setChecked(false);
 
                 } else if (selectedId == R.id.rb_team2) {
                     Toast.makeText(activity, "radio2", Toast.LENGTH_SHORT).show();
 
                     teamWinner = match.getTeam2();
+                    rbTeam1.setChecked(false);
                 }
 
                 final String finalTeamWinner = teamWinner;
