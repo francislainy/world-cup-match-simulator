@@ -21,8 +21,8 @@ public interface MatchDaoAccess {
     // @Query("SELECT matchId FROM `Match` LIMIT 1")
     // ArrayList<Integer> getTeamId(Match match);
 
-    // @Query("SELECT * FROM Team WHERE teamId = :teamId LIMIT 1")
-    // Team selectTeamById(int teamId);
+    @Query("SELECT matchWinner FROM 'Match' WHERE matchId = :matchId LIMIT 1")
+    String selectMatchWinner (int matchId);
 
     // @Query("INSERT INTO 'Match' values (matchWinner = :matchWinner) where matchId = :matchId") // todo: insert match winner
     // void insertTeam1(String team1, int matchId);
