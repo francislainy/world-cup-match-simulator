@@ -20,10 +20,10 @@ public interface DaoAccess {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMultipleTeams(List<Team> teamList);
 
-    @Query("SELECT * FROM Team WHERE teamId = :teamId")
+    @Query("SELECT * FROM Team WHERE teamId = :teamId LIMIT 1")
     Team selectTeamById(int teamId);
 
-    @Query("SELECT * FROM Team WHERE teamGroup = :teamGroup and teamPosition = :teamPosition")
+    @Query("SELECT * FROM Team WHERE teamGroup = :teamGroup and teamPosition = :teamPosition LIMIT 1")
     Team selectTeamByPosition(String teamGroup, int teamPosition);
 
     @Query("UPDATE Team SET teamPosition = :teamPosition WHERE teamId = :teamId")

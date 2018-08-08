@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "Match")
 public class Match {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int matchId;
     private String matchLabel;
     private String matchWinner;
@@ -19,6 +19,14 @@ public class Match {
 
     public Match() {
 
+    }
+
+    public Match(int matchId, String matchLabel, String matchWinner, String team1, String team2) {
+        this.matchId = matchId;
+        this.matchLabel = matchLabel;
+        this.matchWinner = matchWinner;
+        this.team1 = team1;
+        this.team2 = team2;
     }
 
     public Match(String team1, String team2) {

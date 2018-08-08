@@ -141,18 +141,30 @@ public class KnockoutsFragment extends Fragment {
                 secondGroupG[0] = teamDatabase.daoAccess().selectTeamByPosition("G", 2);
 
 
-                Match match1 = new Match();
-                match1.setTeam1(firstGroupA[0].getTeamName());
-                match1.setTeam2(secondGroupB[0].getTeamName());
-                match1.setMatchLabel("1");
-                match1.setMatchId(1);
+                Match match1 = new Match(1, "1", "", firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName());
+                Match match2 = new Match(2, "2", "", firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName());
+                Match match3 = new Match(3, "3", "", firstGroupE[0].getTeamName(), secondGroupF[0].getTeamName());
+                Match match4 = new Match(4, "4", "", firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName());
+                Match match5 = new Match(5, "5", "", firstGroupB[0].getTeamName(), secondGroupA[0].getTeamName());
+                Match match6 = new Match(6, "6", "", firstGroupD[0].getTeamName(), secondGroupC[0].getTeamName());
+                Match match7 = new Match(7, "7", "", firstGroupF[0].getTeamName(), secondGroupE[0].getTeamName());
+                Match match8 = new Match(8, "8", "", firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName());
+
+
+                // int matchId, String matchLabel, String matchWinner, String team1, String team2
 
                MatchDatabase matchDatabase = Room.databaseBuilder(getContext(), MatchDatabase.class, "match_result")
                         .fallbackToDestructiveMigration()
                         .build();
 
-               // matchDatabase.matchDaoAccess().insertMatch(match1);
-
+               matchDatabase.matchDaoAccess().insertMatch(match1);
+               matchDatabase.matchDaoAccess().insertMatch(match2);
+               matchDatabase.matchDaoAccess().insertMatch(match3);
+               matchDatabase.matchDaoAccess().insertMatch(match4);
+               matchDatabase.matchDaoAccess().insertMatch(match5);
+               matchDatabase.matchDaoAccess().insertMatch(match6);
+               matchDatabase.matchDaoAccess().insertMatch(match7);
+               matchDatabase.matchDaoAccess().insertMatch(match8);
 
                 handler.post(new Runnable() {
                     @Override

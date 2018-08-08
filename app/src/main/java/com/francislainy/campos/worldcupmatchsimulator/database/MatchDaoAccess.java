@@ -14,14 +14,21 @@ public interface MatchDaoAccess {
 
     // @Insert(onConflict = OnConflictStrategy.REPLACE)
     // void insertSingleMatchWinner(Match match);
-    //
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMatch(Match match);
 
-    // @Query("Insert into 'Match' values (matchWinner = :matchWinner) where matchId = :matchId") // todo: insert match winner
+    // @Query("SELECT matchId FROM `Match` LIMIT 1")
+    // ArrayList<Integer> getTeamId(Match match);
+
+    // @Query("SELECT * FROM Team WHERE teamId = :teamId LIMIT 1")
+    // Team selectTeamById(int teamId);
+
+    // @Query("INSERT INTO 'Match' values (matchWinner = :matchWinner) where matchId = :matchId") // todo: insert match winner
     // void insertTeam1(String team1, int matchId);
 
-
+    // INSERT INTO TABLE_NAME (column1, column2, column3,...columnN)
+    // VALUES (value1, value2, value3,...valueN);
 
     @Query("UPDATE `Match` set matchWinner = :matchWinner where matchId = :matchId")
     void updateMatchWinner(String matchWinner, int matchId);
@@ -37,6 +44,5 @@ public interface MatchDaoAccess {
 
     @Query("DELETE FROM `Match` WHERE matchId = :matchId")
     void delete(int matchId);
-
 
 }

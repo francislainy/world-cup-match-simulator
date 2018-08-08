@@ -95,7 +95,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         }
 
 
-        void bind(int position) {
+        void bind(final int position) {
 
             match = data.get(position);
 
@@ -113,7 +113,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                 @Override
                 public void run() {
 
-                    matchDatabase.matchDaoAccess().insertMatch(match);
+                    // match.setMatchId((position + 1) + 1);
+                    // match.setTeam1((position + 1) + 1);
+                    // match.setTeam2((position + 1) + 1);
+
+
                     // matchDatabase.matchDaoAccess().updateTeam1(tvFirstGroup.getText().toString(), getAdapterPosition() + 1);
                     // matchDatabase.matchDaoAccess().updateTeam2(tvSecondGroup.getText().toString(), getAdapterPosition() + 1);
                     // matchDatabase.matchDaoAccess().updateMatchLabel("Match" + tvMatch.getText().toString(), getAdapterPosition() + 1);
