@@ -29,7 +29,8 @@ public class Match {
         this.team2 = team2;
     }
 
-    public Match(String team1, String team2) {
+    public Match(int matchId, String team1, String team2) {
+        this.matchId = matchId;
         this.team1 = team1;
         this.team2 = team2;
     }

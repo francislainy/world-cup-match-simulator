@@ -160,7 +160,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                     @Override
                     public void run() {
 
-                        matchDatabase.matchDaoAccess().updateMatchWinner(finalTeamWinner, getAdapterPosition() + 1);
+                        matchDatabase.matchDaoAccess().updateMatchWinner(finalTeamWinner, match.getMatchId()); // todo: give the correct match id
 
                     }
 

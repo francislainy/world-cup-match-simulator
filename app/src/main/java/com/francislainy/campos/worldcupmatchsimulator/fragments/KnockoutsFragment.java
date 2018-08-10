@@ -35,6 +35,7 @@ public class KnockoutsFragment extends Fragment {
 
     private static final String DATABASE_NAME = "teams_db";
     private TeamDatabase teamDatabase;
+    private MatchDatabase matchDatabase;
 
     final Team[] firstGroupA = {null};
     final Team[] secondGroupB = {null};
@@ -88,6 +89,10 @@ public class KnockoutsFragment extends Fragment {
 
 
         teamDatabase = Room.databaseBuilder(getContext(), TeamDatabase.class, DATABASE_NAME)
+                .fallbackToDestructiveMigration()
+                .build();
+
+        matchDatabase = Room.databaseBuilder(getContext(), MatchDatabase.class, "match_result")
                 .fallbackToDestructiveMigration()
                 .build();
 
@@ -158,11 +163,6 @@ public class KnockoutsFragment extends Fragment {
                 Match match7 = new Match(7, "7", firstGroupF[0].getTeamName(), firstGroupF[0].getTeamName(), secondGroupE[0].getTeamName());
                 Match match8 = new Match(8, "8", firstGroupH[0].getTeamName(), firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName());
 
-
-                MatchDatabase matchDatabase = Room.databaseBuilder(getContext(), MatchDatabase.class, "match_result")
-                        .fallbackToDestructiveMigration()
-                        .build();
-
                 matchDatabase.matchDaoAccess().insertMatch(match1);
                 matchDatabase.matchDaoAccess().insertMatch(match2);
                 matchDatabase.matchDaoAccess().insertMatch(match3);
@@ -196,10 +196,6 @@ public class KnockoutsFragment extends Fragment {
         rv.setNestedScrollingEnabled(false);
 
         rv.setAdapter(matchAdapter);
-
-        final MatchDatabase matchDatabase = Room.databaseBuilder(getContext(), MatchDatabase.class, "match_result")
-                .fallbackToDestructiveMigration()
-                .build();
 
         final Handler handler = new Handler();
         new Thread(new Runnable() {
@@ -260,21 +256,21 @@ public class KnockoutsFragment extends Fragment {
 
         if (stage.equals("oitavas")) {
 
-            matchAdapter.addItem(new Match(firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName()));
-            matchAdapter.addItem(new Match(firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName()));
-            matchAdapter.addItem(new Match(firstGroupE[0].getTeamName(), secondGroupF[0].getTeamName()));
-            matchAdapter.addItem(new Match(firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName()));
-            matchAdapter.addItem(new Match(firstGroupB[0].getTeamName(), secondGroupA[0].getTeamName()));
-            matchAdapter.addItem(new Match(firstGroupD[0].getTeamName(), secondGroupC[0].getTeamName()));
-            matchAdapter.addItem(new Match(firstGroupF[0].getTeamName(), secondGroupE[0].getTeamName()));
-            matchAdapter.addItem(new Match(firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName()));
+            matchAdapter.addItem(new Match(1, firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName()));
+            matchAdapter.addItem(new Match(2, firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName()));
+            matchAdapter.addItem(new Match(3, firstGroupE[0].getTeamName(), secondGroupF[0].getTeamName()));
+            matchAdapter.addItem(new Match(4, firstGroupG[0].getTeamName(), secondGroupH[0].getTeamName()));
+            matchAdapter.addItem(new Match(5, firstGroupB[0].getTeamName(), secondGroupA[0].getTeamName()));
+            matchAdapter.addItem(new Match(6, firstGroupD[0].getTeamName(), secondGroupC[0].getTeamName()));
+            matchAdapter.addItem(new Match(7, firstGroupF[0].getTeamName(), secondGroupE[0].getTeamName()));
+            matchAdapter.addItem(new Match(8, firstGroupH[0].getTeamName(), secondGroupG[0].getTeamName()));
 
         } else if (stage.equals("quartas")) {
 
-            matchAdapter.addItem(new Match(winner1,winner2)); // todo: set match winner on database
-            matchAdapter.addItem(new Match(winner3, winner4));
-            matchAdapter.addItem(new Match(winner5, winner6));
-            matchAdapter.addItem(new Match(winner7, winner8));
+            matchAdapter.addItem(new Match(9, winner1, winner2)); // todo: set match winner on database
+            matchAdapter.addItem(new Match(10, winner3, winner4));
+            matchAdapter.addItem(new Match(11, winner5, winner6));
+            matchAdapter.addItem(new Match(12, winner7, winner8));
 
         }
 
