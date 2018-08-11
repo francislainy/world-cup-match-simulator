@@ -78,7 +78,7 @@ public class TeamGroupFragment extends Fragment {
         return fragment;
     }
 
-
+// todo: fix how tapping a team makes it disappear
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

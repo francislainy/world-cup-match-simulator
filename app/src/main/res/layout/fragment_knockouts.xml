@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="Next"
+        android:text="Go to Knockout 2"
         android:id="@+id/btn_next"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
