@@ -13,6 +13,7 @@ import com.francislainy.campos.worldcupmatchsimulator.database.Team;
 import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 import com.francislainy.campos.worldcupmatchsimulator.fragments.ConfirmFragment;
 import com.francislainy.campos.worldcupmatchsimulator.fragments.TeamGroupFragment;
+import com.francislainy.campos.worldcupmatchsimulator.fragments.TeamGroupFragment2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,21 +132,21 @@ public class MainActivity extends AppCompatActivity {
             switch (pos) {
 
                 case 0:
-                    return TeamGroupFragment.newInstance("a");
+                    return TeamGroupFragment2.newInstance("a");
                 case 1:
-                    return TeamGroupFragment.newInstance("b");
+                    return TeamGroupFragment2.newInstance("b");
                 case 2:
-                    return TeamGroupFragment.newInstance("c");
+                    return TeamGroupFragment2.newInstance("c");
                 case 3:
-                    return TeamGroupFragment.newInstance("d");
+                    return TeamGroupFragment2.newInstance("d");
                 case 4:
-                    return TeamGroupFragment.newInstance("e");
+                    return TeamGroupFragment2.newInstance("e");
                 case 5:
-                    return TeamGroupFragment.newInstance("f");
+                    return TeamGroupFragment2.newInstance("f");
                 case 6:
-                    return TeamGroupFragment.newInstance("g");
+                    return TeamGroupFragment2.newInstance("g");
                 case 7:
-                    return TeamGroupFragment.newInstance("h");
+                    return TeamGroupFragment2.newInstance("h");
                 case 8:
                     return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
                 default:
