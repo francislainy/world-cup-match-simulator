@@ -148,12 +148,6 @@ public class MainActivity extends AppCompatActivity {
                     return TeamGroupFragment.newInstance("h");
                 case 8:
                     return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
-                // case 9:
-                //     return KnockoutsFragment.newInstance("oitavas");
-                // case 10:
-                //     return new ConfirmFragment(); // Fragment added to buy time for database to update and avoid null pointer exception
-                // case 11:
-                //     return KnockoutsFragment.newInstance("quartas");
                 default:
                     return TeamGroupFragment.newInstance("a");
             }

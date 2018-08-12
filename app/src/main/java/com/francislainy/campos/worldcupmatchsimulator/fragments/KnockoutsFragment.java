@@ -104,15 +104,15 @@ public class KnockoutsFragment extends Fragment {
         }
 
         switch (stage) {
-            case "oitavas":
+            case "knockout1":
 
-                oitavas();
+                knockout1();
 
                 break;
 
-            case "quartas":
+            case "knockout2":
 
-                quartas();
+                knockout2();
 
                 break;
 
@@ -145,18 +145,25 @@ public class KnockoutsFragment extends Fragment {
             FragmentTransaction transaction = fm.beginTransaction();
 
             String btnText = btnNext.getText().toString().toLowerCase();
-            if (btnText.equals("go to knockout 2")) {
-                transaction.replace(R.id.container_body, KnockoutsFragment.newInstance("quartas")).commit();
-            } else if (btnText.equals("go to semi")) {
-                transaction.replace(R.id.container_body, KnockoutsFragment.newInstance("semi")).commit();
-            } else if (btnText.equals("go to final")) {
-                transaction.replace(R.id.container_body, KnockoutsFragment.newInstance("finals")).commit();
+            switch (btnText) {
+                case "go to knockout 2":
+                    transaction.replace(R.id.container_body, KnockoutsFragment.newInstance("knockout2")).commit();
+                    break;
+                case "go to semi":
+                    transaction.replace(R.id.container_body, KnockoutsFragment.newInstance("semi")).commit();
+                    break;
+                case "go to final":
+                    transaction.replace(R.id.container_body, KnockoutsFragment.newInstance("finals")).commit();
+                    break;
+                case "this is the final":
+                    transaction.replace(R.id.container_body, WinnerFragment.newInstance()).commit();
+                    break;
             }
         }
     };
 
 
-    private void oitavas() {
+    private void knockout1() {
 
         btnNext.setText("go to knockout 2");
 
@@ -205,7 +212,7 @@ public class KnockoutsFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        displayTeams("oitavas");
+                        displayTeams("knockout1");
 
                     }
                 });
@@ -215,7 +222,7 @@ public class KnockoutsFragment extends Fragment {
     }
 
 
-    private void quartas() {
+    private void knockout2() {
 
         btnNext.setText("go to semi");
 
@@ -249,7 +256,7 @@ public class KnockoutsFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        displayTeams("quartas");
+                        displayTeams("knockout2");
 
                     }
                 });
@@ -258,7 +265,7 @@ public class KnockoutsFragment extends Fragment {
         }).start();
     }
 
-    // todo: show winner on a new fragment
+
     private void semi() {
 
         btnNext.setText("go to final");
@@ -335,14 +342,8 @@ public class KnockoutsFragment extends Fragment {
 
         rv.setAdapter(matchAdapter);
 
-        // try {
-        //     Thread.sleep(2000);
-        // } catch (InterruptedException e) {
-        //     e.printStackTrace();
-        // }
-
         switch (stage) {
-            case "oitavas":
+            case "knockout1":
 
                 matchAdapter.addItem(new Match(1, firstGroupA[0].getTeamName(), secondGroupB[0].getTeamName()));
                 matchAdapter.addItem(new Match(2, firstGroupC[0].getTeamName(), secondGroupD[0].getTeamName()));
@@ -355,7 +356,7 @@ public class KnockoutsFragment extends Fragment {
 
                 break;
 
-            case "quartas":
+            case "knockout2":
 
                 matchAdapter.addItem(new Match(9, winner1, winner2));
                 matchAdapter.addItem(new Match(10, winner3, winner4));
@@ -366,14 +367,14 @@ public class KnockoutsFragment extends Fragment {
 
             case "semi":
 
-                matchAdapter.addItem(new Match(13, winner1, winner2)); // todo: set match winner on database
+                matchAdapter.addItem(new Match(13, winner1, winner2));
                 matchAdapter.addItem(new Match(14, winner3, winner4));
 
                 break;
 
             case "finals":
 
-                matchAdapter.addItem(new Match(15, winner1, winner2)); // todo: set match winner on database
+                matchAdapter.addItem(new Match(15, winner1, winner2));
 
                 break;
         }

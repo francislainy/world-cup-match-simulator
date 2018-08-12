@@ -17,6 +17,6 @@ public class KnockoutsActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.add(R.id.container_body, KnockoutsFragment.newInstance("oitavas")).commit();
+        transaction.add(R.id.container_body, KnockoutsFragment.newInstance("knockout1")).commit();
     }
 }
