@@ -78,7 +78,7 @@ public class TeamGroupFragment extends Fragment {
         return fragment;
     }
 
-// todo: fix how tapping a team makes it disappear
+    // todo: fix how tapping a team makes it disappear
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -233,22 +233,16 @@ public class TeamGroupFragment extends Fragment {
 
                     layout.setOnDragListener(new MyDragListener());
                 }
-
             }
 
 
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            ClipData data = ClipData.newPlainText("", "");
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+            view.startDrag(data, shadowBuilder, view, 0);
+            view.setVisibility(View.VISIBLE);
 
-                ClipData data = ClipData.newPlainText("", "");
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-                view.startDrag(data, shadowBuilder, view, 0);
-                view.setVisibility(View.VISIBLE);
+            return true;
 
-                return true;
-            }
-
-
-            return false;
         }
     }
 
@@ -259,8 +253,6 @@ public class TeamGroupFragment extends Fragment {
         public boolean onDrag(View view, DragEvent dragEvent) {
 
             int action = dragEvent.getAction();
-            int id = view.getId();
-            LinearLayout layout = getActivity().findViewById(id);
 
             switch (action) {
 
@@ -273,24 +265,22 @@ public class TeamGroupFragment extends Fragment {
                     LinearLayout containerWhereViewWillBeDropped = (LinearLayout) view;
                     viewBeingHold.setVisibility(View.VISIBLE);
 
-
-                    // Remove the view temporarily from the layout and add it to cl
                     View viewAlreadyOnLayout = containerWhereViewWillBeDropped.getChildAt(0);
 
                     if (viewAlreadyOnLayout != null) {
 
                         containerWhereViewWillBeDropped.removeView(viewAlreadyOnLayout);
 
-                        // cl.removeViewAt(0);
-                        cl.addView(viewAlreadyOnLayout); //todo: check whether adding the view to a temporary parent is necessary
+                        containerWhereViewWillBeDropped.addView(viewBeingHold);
 
-                        containerWhereViewWillBeDropped.addView(viewBeingHold); // containerWhereViewWillBeDropped - btn1 now already on ll_2
-
-
-                        cl.removeView(viewAlreadyOnLayout);
                         owner.addView(viewAlreadyOnLayout);
 
+                    } else if (viewAlreadyOnLayout == null) {// it means we're still on the same layout
+
+                        owner.addView(viewBeingHold);
+
                     }
+
 
                     updateDatabaseWithTeamPosition();
 
