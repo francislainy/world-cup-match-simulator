@@ -25,19 +25,20 @@
         android:layout_height="100dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorPrimary"
-        android:orientation="horizontal"
-        android:text="Button"
+        android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/ll_2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/ll_3"
         app:layout_constraintTop_toTopOf="@+id/ll_2">
 
-        <Button
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:text="Russia"/>
+            android:src="@drawable/russia"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -46,16 +47,17 @@
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
         android:background="#00FF00"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/ll_4"
         app:layout_constraintTop_toBottomOf="@+id/cl_1">
 
-        <Button
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/btn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:text="Arabia Saudita"/>
+            android:src="@drawable/arabia_saudita"/>
     </LinearLayout>
 
     <LinearLayout
@@ -65,16 +67,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
         android:background="#FF0000"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_1">
 
-        <Button
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/btn3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:text="Egito"/>
+            android:src="@drawable/egito"/>
     </LinearLayout>
 
     <LinearLayout
@@ -83,16 +86,17 @@
         android:layout_height="100dp"
         android:layout_marginEnd="16dp"
         android:background="#FFFF00"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ll_3">
 
-        <Button
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/btn4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:text="Uruguai"/>
+            android:src="@drawable/uruguai"/>
 
     </LinearLayout>
 

@@ -3,6 +3,7 @@ package com.francislainy.campos.worldcupmatchsimulator.fragments;
 
 import android.arch.persistence.room.Room;
 import android.content.ClipData;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.francislainy.campos.worldcupmatchsimulator.database.TeamDatabase;
 
 import java.util.ArrayList;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,16 +30,16 @@ import static android.view.DragEvent.ACTION_DROP;
 
 //https://arte.folha.uol.com.br/esporte/copa-2018/simulador-de-resultados/
 
-public class TeamGroupFragment extends Fragment {
+public class TeamGroupFragment2 extends Fragment {
 
     @BindView(R.id.btn1)
-    Button btn1;
+    ImageView btn1;
     @BindView(R.id.btn2)
-    Button btn2;
+    ImageView btn2;
     @BindView(R.id.btn3)
-    Button btn3;
+    ImageView btn3;
     @BindView(R.id.btn4)
-    Button btn4;
+    ImageView btn4;
     @BindView(R.id.btn_next)
     Button btnNext;
     @BindView(R.id.ll_1)
@@ -52,6 +55,72 @@ public class TeamGroupFragment extends Fragment {
     @BindView(R.id.tv_group_name)
     TextView tvGroupName;
 
+    @BindDrawable(R.drawable.russia)
+    Drawable russia;
+    @BindDrawable(R.drawable.arabia_saudita)
+    Drawable arabia_saudirta;
+    @BindDrawable(R.drawable.egito)
+    Drawable egito;
+    @BindDrawable(R.drawable.uruguai)
+    Drawable uruguai;
+    @BindDrawable(R.drawable.portugal)
+    Drawable portugal;
+    @BindDrawable(R.drawable.espanha)
+    Drawable espanha;
+    @BindDrawable(R.drawable.marrocos)
+    Drawable marrocos;
+    @BindDrawable(R.drawable.ira)
+    Drawable ira;
+    @BindDrawable(R.drawable.franca)
+    Drawable franca;
+    @BindDrawable(R.drawable.australia)
+    Drawable australia;
+    @BindDrawable(R.drawable.peru)
+    Drawable peru;
+    @BindDrawable(R.drawable.dinamarca)
+    Drawable dinamarca;
+    @BindDrawable(R.drawable.islandia)
+    Drawable islandia;
+    @BindDrawable(R.drawable.croacia)
+    Drawable croacia;
+    @BindDrawable(R.drawable.argentina)
+    Drawable argentina;
+    @BindDrawable(R.drawable.nigeria)
+    Drawable nigeria;
+    @BindDrawable(R.drawable.brasil)
+    Drawable brasil;
+    @BindDrawable(R.drawable.suica)
+    Drawable suica;
+    @BindDrawable(R.drawable.costa_rica)
+    Drawable costa_rica;
+    @BindDrawable(R.drawable.servia)
+    Drawable servia;
+    @BindDrawable(R.drawable.alemanha)
+    Drawable alemanha;
+    @BindDrawable(R.drawable.mexico)
+    Drawable mexico;
+    @BindDrawable(R.drawable.suecia)
+    Drawable suecia;
+    @BindDrawable(R.drawable.coreia_do_sul)
+    Drawable coreia_do_sul;
+    @BindDrawable(R.drawable.belgica)
+    Drawable belgica;
+    @BindDrawable(R.drawable.panama)
+    Drawable panama;
+    @BindDrawable(R.drawable.tunisia)
+    Drawable tunisia;
+    @BindDrawable(R.drawable.inglaterra)
+    Drawable inglaterra;
+    @BindDrawable(R.drawable.polonia)
+    Drawable polonia;
+    @BindDrawable(R.drawable.senegal)
+    Drawable senegal;
+    @BindDrawable(R.drawable.colombia)
+    Drawable colombia;
+    @BindDrawable(R.drawable.japao)
+    Drawable japao;
+
+
     int positionTeamId1 = 0;
     int positionTeamId2 = 0;
     int positionTeamId3 = 0;
@@ -61,14 +130,14 @@ public class TeamGroupFragment extends Fragment {
     private TeamDatabase teamDatabase;
     ArrayList<LinearLayout> layouts = new ArrayList<>();
 
-    public TeamGroupFragment() {
+    public TeamGroupFragment2() {
         // Required empty public constructor
     }
 
 
-    public static TeamGroupFragment newInstance(String group) {
+    public static TeamGroupFragment2 newInstance(String group) {
 
-        TeamGroupFragment fragment = new TeamGroupFragment();
+        TeamGroupFragment2 fragment = new TeamGroupFragment2();
         Bundle args = new Bundle();
         args.putString("group", group);
         fragment.setArguments(args);
@@ -80,7 +149,7 @@ public class TeamGroupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_team_group, container, false);
+        View view = inflater.inflate(R.layout.fragment_team_group2, container, false);
 
         ButterKnife.bind(this, view);
 
@@ -128,10 +197,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "a":
 
-                btn1.setText("Russia");
-                btn2.setText("Arabia Saudita");
-                btn3.setText("Egito");
-                btn4.setText("Uruguai");
+                btn1.setImageDrawable(russia);
+                btn2.setImageDrawable(arabia_saudirta);
+                btn3.setImageDrawable(egito);
+                btn4.setImageDrawable(uruguai);
 
                 tvGroupName.setText("Group A");
 
@@ -139,10 +208,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "b":
 
-                btn1.setText("Portugal");
-                btn2.setText("Espanha");
-                btn3.setText("Marrocos");
-                btn4.setText("Ira");
+                btn1.setImageDrawable(portugal);
+                btn2.setImageDrawable(espanha);
+                btn3.setImageDrawable(marrocos);
+                btn4.setImageDrawable(ira);
 
                 tvGroupName.setText("Group B");
 
@@ -150,10 +219,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "c":
 
-                btn1.setText("Franca");
-                btn2.setText("Australia");
-                btn3.setText("Peru");
-                btn4.setText("Dinamarca");
+                btn1.setImageDrawable(franca);
+                btn2.setImageDrawable(australia);
+                btn3.setImageDrawable(peru);
+                btn4.setImageDrawable(dinamarca);
 
                 tvGroupName.setText("Group C");
 
@@ -161,10 +230,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "d":
 
-                btn1.setText("Islandia");
-                btn2.setText("Argentina");
-                btn3.setText("Croacia");
-                btn4.setText("Nigeria");
+                btn1.setImageDrawable(islandia);
+                btn2.setImageDrawable(argentina);
+                btn3.setImageDrawable(croacia);
+                btn4.setImageDrawable(nigeria);
 
                 tvGroupName.setText("Group D");
 
@@ -172,10 +241,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "e":
 
-                btn1.setText("Brasil");
-                btn2.setText("Suica");
-                btn3.setText("Costa Rica");
-                btn4.setText("Servia");
+                btn1.setImageDrawable(brasil);
+                btn2.setImageDrawable(suica);
+                btn3.setImageDrawable(costa_rica);
+                btn4.setImageDrawable(servia);
 
                 tvGroupName.setText("Group E");
 
@@ -184,10 +253,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "f":
 
-                btn1.setText("Alemanha");
-                btn2.setText("Mexico");
-                btn3.setText("Suecia");
-                btn4.setText("Coreia do Sul");
+                btn1.setImageDrawable(alemanha);
+                btn2.setImageDrawable(mexico);
+                btn3.setImageDrawable(suecia);
+                btn4.setImageDrawable(coreia_do_sul);
 
                 tvGroupName.setText("Group F");
 
@@ -196,10 +265,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "g":
 
-                btn1.setText("Belgica");
-                btn2.setText("Panama");
-                btn3.setText("Tunisia");
-                btn4.setText("Inglaterra");
+                btn1.setImageDrawable(belgica);
+                btn2.setImageDrawable(panama);
+                btn3.setImageDrawable(tunisia);
+                btn4.setImageDrawable(inglaterra);
 
                 tvGroupName.setText("Group G");
 
@@ -207,10 +276,10 @@ public class TeamGroupFragment extends Fragment {
 
             case "h":
 
-                btn1.setText("Polonia");
-                btn2.setText("Senegal");
-                btn3.setText("Colombia");
-                btn4.setText("Japao");
+                btn1.setImageDrawable(polonia);
+                btn2.setImageDrawable(senegal);
+                btn3.setImageDrawable(colombia);
+                btn4.setImageDrawable(japao);
 
                 tvGroupName.setText("Group H");
 
